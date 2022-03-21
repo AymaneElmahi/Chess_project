@@ -1,6 +1,6 @@
 CC = g++
 
-CFLAGS ?= -Wall -Wextra -Werror
+CFLAGS ?= -g -Wall -Wextra -Werror
 LDLIBS ?=
 
 INCLUDE_PATH = ./include

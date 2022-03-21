@@ -1,2 +1,2 @@
-#define NBCOL 8;
-#define NBLIGN 8;
+#define NBCOL 8
+#define NBLIGN 8
