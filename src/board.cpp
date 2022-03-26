@@ -20,6 +20,25 @@ void Board::putPiece(Piece *piece, Square position)
 
 void Board::move(int lign_orig, int col_orig, int lign_dest, int col_dest)
 {
+    // check if the move is within the Board
+    if (lign_orig < 0 || lign_orig > 7 || lign_dest < 0 || lign_dest > 7 || col_orig < 0 || col_orig > 7 || col_dest < 0 || col_dest > 7)
+    {
+        cout << "Move is not within the board" << endl;
+        return;
+    }
+    if (board[lign_orig][col_orig] == nullptr)
+    {
+        cout << "No piece at this position" << endl;
+        return;
+    }
+
+    // check if the move is legal
+    if ((board[lign_orig][col_orig]->isLegalMove(col_orig, lign_orig, col_dest, lign_dest) == 0))
+    {
+        cout << "Move is not legal" << endl;
+        return;
+    }
+
     board[lign_dest][col_dest] = board[lign_orig][col_orig];
     board[lign_orig][col_orig] = nullptr;
 }
@@ -92,4 +111,9 @@ void Board::affiche()
         cout << "|\n  +-----+-----+-----+-----+-----+-----+-----+-----+";
         cout << endl;
     }
+}
+
+Piece *Board::getPiece(int lign, int col)
+{
+    return board[lign][col];
 }

@@ -24,6 +24,7 @@ public:
     void allocMemBoard();
     void putPiece(Piece *piece, Square startingPos);
     void move(int lign_orig, int col_orig, int lign_dest, int col_dest);
+    Piece *getPiece(int lign, int col);
 
 protected:
     Piece *board[8][8];
