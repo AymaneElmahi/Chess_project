@@ -63,7 +63,7 @@ int Piece::isLegalMove(int StartCol, int StartLign, int EndCol, int EndLign)
         }
 
         // check if the move is diagonal
-        if (abs(StartCol - EndCol) != abs(StartLign - EndLign))
+        if (abs(StartCol - EndCol) == abs(StartLign - EndLign))
         {
             return 1;
         }
@@ -76,13 +76,22 @@ int Piece::isLegalMove(int StartCol, int StartLign, int EndCol, int EndLign)
         // check if the move is horizontal or vertical
         if (StartCol == EndCol || StartLign == EndLign)
         {
-            return 1;
+            // check if the move is one square
+            if (abs(StartCol - EndCol) == 1 || abs(StartLign - EndLign) == 1)
+            {
+                return 1;
+            }
+            return 0;
         }
 
         // check if the move is diagonal
         if (abs(StartCol - EndCol) != abs(StartLign - EndLign))
         {
-            return 1;
+            // check if the move is one square
+            if (abs(StartCol - EndCol) == 1 || abs(StartLign - EndLign) == 1)
+            {
+                return 1;
+            }
         }
         return 0;
     }
@@ -101,12 +110,24 @@ int Piece::isLegalMove(int StartCol, int StartLign, int EndCol, int EndLign)
     // check if the piece is a pawn
     if (name == " \u2659 " || name == " \u265F ")
     {
+        // pawns can go up by one or two squares at a time
+        if (abs(EndLign - StartLign) != 1 && abs(EndLign - StartLign) != 2)
+        {
+            return 0;
+        }
+
         // check if the move is vertical
         if (StartCol == EndCol)
         {
             return 1;
         }
+
         return 0;
     }
     return 1;
+}
+
+void Piece::setPosition(int Col, int Lign)
+{
+    position = Square(Col, Lign);
 }

@@ -24,6 +24,14 @@ public:
     void allocMemBoard();
     void putPiece(Piece *piece, Square startingPos);
     void move(int lign_orig, int col_orig, int lign_dest, int col_dest);
+
+    int isPathClear(int lign_orig, int col_orig, int lign_dest, int col_dest);
+    int isPathClearBishop(int lign_orig, int col_orig, int lign_dest, int col_dest);
+    int isPathClearRook(int lign_orig, int col_orig, int lign_dest, int col_dest);
+    int isPathClearQueen(int lign_orig, int col_orig, int lign_dest, int col_dest);
+    int isPathClearPawn(int lign_orig, int col_orig, int lign_dest, int col_dest);
+    int isPathClearPawnBlack(int lign_orig, int col_orig, int lign_dest, int col_dest);
+    int isPathClearPawnWhite(int lign_orig, int col_orig, int lign_dest, int col_dest);
     Piece *getPiece(int lign, int col);
 
 protected:

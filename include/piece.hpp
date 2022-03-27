@@ -17,6 +17,8 @@ public:
         : color(color), name(name), position(position) {}
     Square get_position();
     virtual int isLegalMove(int StartCol, int StartLign, int EndCol, int EndLign);
+    void setPosition(int Col, int Lign);
+
     string get_name();
     Color get_color();
     void affiche();
