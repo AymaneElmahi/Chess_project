@@ -4,6 +4,3 @@
 #include "rook.hpp"
 #include "king.hpp"
 #include "queen.hpp"
-
-a2a4
-b2b4
