@@ -1,3 +1,3 @@
-#define NBCOL 8
-#define NBLIGN 8
-#define UNUSED(x) (void)(x)
+#define NBCOL 8             // number of columns
+#define NBLIGN 8            // number of ligns
+#define UNUSED(x) (void)(x) // for unused parameters in parent functions

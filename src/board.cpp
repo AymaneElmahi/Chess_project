@@ -2,6 +2,10 @@
 #include "piece.hpp"
 #include "macros.hpp"
 
+/**
+ * @brief set board cases to nullptr
+ *
+ */
 void Board::allocMemBoard()
 {
     for (int i = 0; i < NBCOL; i++)
@@ -13,12 +17,26 @@ void Board::allocMemBoard()
     }
 }
 
+/**
+ * @brief put a piece on the board (used to initialize the board)
+ *
+ * @param piece piece to put on the board
+ * @param position position of the piece
+ */
 void Board::putPiece(Piece *piece, Square position)
 {
     board[position.get_lign()][position.get_column()] = piece;
 }
 
-void Board::move(int lign_orig, int col_orig, int lign_dest, int col_dest)
+/**
+ * @brief move a piece on the board
+ *
+ * @param lign_orig the lign of the piece to move
+ * @param col_orig the column of the piece to move
+ * @param lign_dest the lign of the destination
+ * @param col_dest the column of the destination
+ */
+void Board::move(int col_orig, int lign_orig, int col_dest, int lign_dest)
 {
     // check if the move is within the Board
     if (lign_orig < 0 || lign_orig > 7 || lign_dest < 0 || lign_dest > 7 || col_orig < 0 || col_orig > 7 || col_dest < 0 || col_dest > 7)
@@ -26,6 +44,8 @@ void Board::move(int lign_orig, int col_orig, int lign_dest, int col_dest)
         cout << "Move is not within the board" << endl;
         return;
     }
+
+    // check if there is a piece in the square
     if (board[lign_orig][col_orig] == nullptr)
     {
         cout << "No piece at this position" << endl;
@@ -39,25 +59,11 @@ void Board::move(int lign_orig, int col_orig, int lign_dest, int col_dest)
         return;
     }
 
-    // // check if the path is clear
-    // if (isPathClear(col_orig, lign_orig, col_dest, lign_dest) == 0)
-    // {
-    //     cout << "Path is not clear" << endl;
-    //     return;
-    // }
-
-    // check if it's a pawn
-    if (board[lign_orig][col_orig]->get_name() == " \u2659 " || board[lign_orig][col_orig]->get_name() == " \u265F ")
+    // check if the path is clear
+    if (isPathClear(col_orig, lign_orig, col_dest, lign_dest) == 0)
     {
-        if ((board[lign_orig][col_orig]->get_position().get_lign() != 1) &&
-            (board[lign_orig][col_orig]->get_position().get_lign() != 6))
-        {
-            if (abs(lign_orig - lign_dest) == 2)
-            {
-                cout << "Pawn can only move 2 squares at the beginning" << endl;
-                return;
-            }
-        }
+        cout << "Path is not clear" << endl;
+        return;
     }
 
     board[lign_dest][col_dest] = board[lign_orig][col_orig];
@@ -150,7 +156,7 @@ Piece *Board::getPiece(int lign, int col)
  * @return int return 1 if the path is clear, 0 if not
  */
 
-int Board::isPathClearBishop(int lign_orig, int col_orig, int lign_dest, int col_dest)
+int Board::isPathClearBishop(int col_orig, int lign_orig, int col_dest, int lign_dest)
 {
     // check if the path is clear
     int i = lign_orig, j = col_orig;
@@ -166,7 +172,7 @@ int Board::isPathClearBishop(int lign_orig, int col_orig, int lign_dest, int col
     return 1;
 }
 
-int Board::isPathClearRook(int lign_orig, int col_orig, int lign_dest, int col_dest)
+int Board::isPathClearRook(int col_orig, int lign_orig, int col_dest, int lign_dest)
 {
     // check if the movement is vertical or horizontal
     if (lign_orig == lign_dest)
@@ -198,13 +204,13 @@ int Board::isPathClearRook(int lign_orig, int col_orig, int lign_dest, int col_d
     return 1;
 }
 
-int Board::isPathClearQueen(int lign_orig, int col_orig, int lign_dest, int col_dest)
+int Board::isPathClearQueen(int col_orig, int lign_orig, int col_dest, int lign_dest)
 {
     // check if the movement diagonal or horizontal or vertical
     if (lign_orig == lign_dest || col_orig == col_dest)
     {
         // check if the path is clear
-        if (isPathClearRook(lign_orig, col_orig, lign_dest, col_dest) == 0)
+        if (isPathClearRook(col_orig, lign_orig, col_dest, lign_dest) == 0)
         {
             return 0;
         }
@@ -212,7 +218,7 @@ int Board::isPathClearQueen(int lign_orig, int col_orig, int lign_dest, int col_
     else
     {
         // check if the path is clear
-        if (isPathClearBishop(lign_orig, col_orig, lign_dest, col_dest) == 0)
+        if (isPathClearBishop(col_orig, lign_orig, col_dest, lign_dest) == 0)
         {
             return 0;
         }
@@ -220,12 +226,12 @@ int Board::isPathClearQueen(int lign_orig, int col_orig, int lign_dest, int col_
     return 1;
 }
 
-int Board::isPathClearPawn(int lign_orig, int col_orig, int lign_dest, int col_dest)
+int Board::isPathClearPawn(int col_orig, int lign_orig, int col_dest, int lign_dest)
 {
     if (board[lign_orig][col_orig]->get_name() == " \u2659 ")
     {
         // check if the path is clear
-        if (isPathClearPawnWhite(lign_orig, col_orig, lign_dest, col_dest) == 0)
+        if (isPathClearPawnWhite(col_orig, lign_orig, col_dest, lign_dest) == 0)
         {
             return 0;
         }
@@ -233,7 +239,7 @@ int Board::isPathClearPawn(int lign_orig, int col_orig, int lign_dest, int col_d
     else
     {
         // check if the path is clear
-        if (isPathClearPawnBlack(lign_orig, col_orig, lign_dest, col_dest) == 0)
+        if (isPathClearPawnBlack(col_orig, lign_orig, col_dest, lign_dest) == 0)
         {
             return 0;
         }
@@ -241,7 +247,7 @@ int Board::isPathClearPawn(int lign_orig, int col_orig, int lign_dest, int col_d
     return 1;
 }
 
-int Board::isPathClearPawnWhite(int lign_orig, int col_orig, int col_dest, int lign_dest)
+int Board::isPathClearPawnWhite(int col_orig, int lign_orig, int col_dest, int lign_dest)
 {
     if (board[lign_orig][col_orig]->get_position().get_lign() == 1)
     {
@@ -283,7 +289,7 @@ int Board::isPathClearPawnWhite(int lign_orig, int col_orig, int col_dest, int l
     return 1;
 }
 
-int Board::isPathClearPawnBlack(int lign_orig, int col_orig, int lign_dest, int col_dest)
+int Board::isPathClearPawnBlack(int col_orig, int lign_orig, int col_dest, int lign_dest)
 {
     if (board[lign_orig][col_orig]->get_position().get_lign() == 6)
     {
@@ -325,27 +331,27 @@ int Board::isPathClearPawnBlack(int lign_orig, int col_orig, int lign_dest, int 
     return 1;
 }
 
-int Board::isPathClear(int lign_orig, int col_orig, int lign_dest, int col_dest)
+int Board::isPathClear(int col_orig, int lign_orig, int col_dest, int lign_dest)
 {
     // check if the piece is a bishop
     if (board[lign_orig][col_orig]->get_name() == " \u265D " || board[lign_orig][col_orig]->get_name() == " \u2657 ")
     {
-        return isPathClearBishop(lign_orig, col_orig, lign_dest, col_dest);
+        return isPathClearBishop(col_orig, lign_orig, col_dest, lign_dest);
     }
     // check if the piece is a rook
     else if (board[lign_orig][col_orig]->get_name() == " \u265C " || board[lign_orig][col_orig]->get_name() == " \u2656 ")
     {
-        return isPathClearRook(lign_orig, col_orig, lign_dest, col_dest);
+        return isPathClearRook(col_orig, lign_orig, col_dest, lign_dest);
     }
     // check if the piece is a queen
     else if (board[lign_orig][col_orig]->get_name() == " \u265B " || board[lign_orig][col_orig]->get_name() == " \u2655 ")
     {
-        return isPathClearQueen(lign_orig, col_orig, lign_dest, col_dest);
+        return isPathClearQueen(col_orig, lign_orig, col_dest, lign_dest);
     }
     // check if the piece is a pawn
     else if (board[lign_orig][col_orig]->get_name() == " \u2659 " || board[lign_orig][col_orig]->get_name() == " \u265A ")
     {
-        return isPathClearPawn(lign_orig, col_orig, lign_dest, col_dest);
+        return isPathClearPawn(col_orig, lign_orig, col_dest, lign_dest);
     }
     return 1;
 }

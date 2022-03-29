@@ -15,12 +15,14 @@ public:
     Piece();
     Piece(Color color, string name, Square position)
         : color(color), name(name), position(position) {}
-    Square get_position();
+
     virtual int isLegalMove(int StartCol, int StartLign, int EndCol, int EndLign);
     void setPosition(int Col, int Lign);
 
-    string get_name();
     Color get_color();
+    string get_name();
+    Square get_position();
+
     void affiche();
 
 protected:
