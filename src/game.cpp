@@ -1,7 +1,7 @@
 #include "game.hpp"
 #include "string.h"
 
-void Game::move(string startingPos, string endingPos)
+int Game::move(string startingPos, string endingPos)
 {
 
     int col_orig = startingPos.substr(0, 1)[0] - 'a';
@@ -12,7 +12,7 @@ void Game::move(string startingPos, string endingPos)
     if (board.getPiece(lign_orig, col_orig)->get_color() != turn)
     {
         cout << "You can't move your opponent's piece" << endl;
-        return;
+        return 0;
     }
 
     // alternate turns
@@ -25,7 +25,7 @@ void Game::move(string startingPos, string endingPos)
         turn = White;
     }
 
-    board.move(col_orig, lign_orig, col_dest, lign_dest);
+    return board.move(col_orig, lign_orig, col_dest, lign_dest);
 }
 
 void Game::affiche()

@@ -24,12 +24,14 @@ int main()
             // découper case origine et destination
             string orig = movement.substr(0, 2);
             string dest = movement.substr(2, 2);
-            myGame.move(orig, dest);
-            myGame.affiche();
-            if (color == White)
-                color = Black;
-            else
-                color = White;
+            if (myGame.move(orig, dest) == 1)
+            {
+                myGame.affiche();
+                if (color == White)
+                    color = Black;
+                else
+                    color = White;
+            }
         }
         else
             stop = true;

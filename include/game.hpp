@@ -16,6 +16,6 @@ protected:
 public:
     void setTurn(Color turn);
     void get_move();
-    void move(string startingPos, string endingPos);
+    int move(string startingPos, string endingPos);
     void affiche();
 };

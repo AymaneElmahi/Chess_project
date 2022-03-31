@@ -23,7 +23,7 @@ public:
     void affiche();
     void allocMemBoard();
     void putPiece(Piece *piece, Square startingPos);
-    void move(int col_orig, int lign_orig, int col_dest, int lign_dest);
+    int move(int col_orig, int lign_orig, int col_dest, int lign_dest);
 
     int isPathClear(int col_orig, int lign_orig, int col_dest, int lign_dest);
     int isPathClearBishop(int col_orig, int lign_orig, int col_dest, int lign_dest);

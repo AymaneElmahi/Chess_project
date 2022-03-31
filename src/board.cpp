@@ -36,39 +36,41 @@ void Board::putPiece(Piece *piece, Square position)
  * @param lign_dest the lign of the destination
  * @param col_dest the column of the destination
  */
-void Board::move(int col_orig, int lign_orig, int col_dest, int lign_dest)
+int Board::move(int col_orig, int lign_orig, int col_dest, int lign_dest)
 {
     // check if the move is within the Board
     if (lign_orig < 0 || lign_orig > 7 || lign_dest < 0 || lign_dest > 7 || col_orig < 0 || col_orig > 7 || col_dest < 0 || col_dest > 7)
     {
         cout << "Move is not within the board" << endl;
-        return;
+        return 0;
     }
 
     // check if there is a piece in the square
     if (board[lign_orig][col_orig] == nullptr)
     {
         cout << "No piece at this position" << endl;
-        return;
+        return 0;
     }
 
     // check if the move is legal
     if ((board[lign_orig][col_orig]->isLegalMove(col_orig, lign_orig, col_dest, lign_dest) == 0))
     {
         cout << "Move is not legal" << endl;
-        return;
+        return 0;
     }
 
     // check if the path is clear
     if (isPathClear(col_orig, lign_orig, col_dest, lign_dest) == 0)
     {
         cout << "Path is not clear" << endl;
-        return;
+        return 0;
     }
 
     board[lign_dest][col_dest] = board[lign_orig][col_orig];
     board[lign_orig][col_orig] = nullptr;
     board[lign_dest][col_dest]->setPosition(col_dest, lign_dest);
+
+    return 1;
 }
 
 Board::Board()
