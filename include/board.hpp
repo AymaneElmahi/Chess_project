@@ -34,6 +34,8 @@ public:
     int isPathClearPawnWhite(int col_orig, int lign_orig, int col_dest, int lign_dest);
 
     Piece *getPiece(int lign, int col);
+    void setTurn(Color turn);
+    Color getTurn();
 
 protected:
     Piece *board[8][8];
@@ -41,4 +43,5 @@ protected:
     Piece *blackPieces[8];
     Piece *whitePawns[8];
     Piece *blackPawns[8];
+    Color turn;
 };

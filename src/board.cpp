@@ -35,11 +35,19 @@ void Board::putPiece(Piece *piece, Square position)
  * @param col_orig the column of the piece to move
  * @param lign_dest the lign of the destination
  * @param col_dest the column of the destination
+ * @return int 1 if the move is possible, 0 otherwise
  */
 int Board::move(int col_orig, int lign_orig, int col_dest, int lign_dest)
 {
     // check if the move is within the Board
-    if (lign_orig < 0 || lign_orig > 7 || lign_dest < 0 || lign_dest > 7 || col_orig < 0 || col_orig > 7 || col_dest < 0 || col_dest > 7)
+    if (lign_orig < 0 ||
+        lign_orig > 7 ||
+        lign_dest < 0 ||
+        lign_dest > 7 ||
+        col_orig < 0 ||
+        col_orig > 7 ||
+        col_dest < 0 ||
+        col_dest > 7)
     {
         cout << "Move is not within the board" << endl;
         return 0;
@@ -49,6 +57,12 @@ int Board::move(int col_orig, int lign_orig, int col_dest, int lign_dest)
     if (board[lign_orig][col_orig] == nullptr)
     {
         cout << "No piece at this position" << endl;
+        return 0;
+    }
+
+    if (turn != board[lign_orig][col_orig]->get_color())
+    {
+        cout << "It's not your turn" << endl;
         return 0;
     }
 
@@ -69,6 +83,12 @@ int Board::move(int col_orig, int lign_orig, int col_dest, int lign_dest)
     board[lign_dest][col_dest] = board[lign_orig][col_orig];
     board[lign_orig][col_orig] = nullptr;
     board[lign_dest][col_dest]->setPosition(col_dest, lign_dest);
+
+    // change Color
+    if (turn == White)
+        turn = Black;
+    else
+        turn = White;
 
     return 1;
 }
@@ -356,4 +376,14 @@ int Board::isPathClear(int col_orig, int lign_orig, int col_dest, int lign_dest)
         return isPathClearPawn(col_orig, lign_orig, col_dest, lign_dest);
     }
     return 1;
+}
+
+void Board::setTurn(Color turn)
+{
+    this->turn = turn;
+}
+
+Color Board::getTurn()
+{
+    return turn;
 }

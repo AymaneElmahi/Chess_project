@@ -11,10 +11,9 @@ class Game
 {
 protected:
     Board board;
-    Color turn;
 
 public:
-    void setTurn(Color turn);
+    Board getBoard();
     void get_move();
     int move(string startingPos, string endingPos);
     void affiche();
