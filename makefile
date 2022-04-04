@@ -1,58 +1,45 @@
 CC = g++
+CFLAGS ?= -Wall -W -Werror -g -O2 -std=c++11 -pedantic -Ofast
 
-CFLAGS ?= -g -Wall -Wextra -Werror -std=c++11 -pipe -Wpedantic
-LDLIBS ?=
+LDLIBS?=-lm -lstdc++
 
 INCLUDE_PATH = ./include
 
-TARGET    = chess
+TARGET   = chess
 
-SRCDIR    = src
-OBJDIR    = obj
-BINDIR    = bin
+SRCDIR   = src
+OBJDIR   = obj
+BINDIR   = bin
 
 SOURCES  := $(wildcard $(SRCDIR)/*.cpp)
 INCLUDES := $(wildcard $(INCLUDE_PATH)/*.hpp)
 OBJECTS  := $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
-PATH_TO_EXE = $(BINDIR)/$(TARGET)
 
-all : release
-
-debug: CFLAGS += -Og -DDEBUG -g
-debug: clean $(PATH_TO_EXE)
-	@echo "\033[33mRunning in debug mode!\033[0m"
-
-release: CFLAGS += -Ofast
-release: clean $(PATH_TO_EXE)
-	@echo "\033[36mRunning in release mode!\033[0m"
-
-run:
-ifneq ("$(wildcard $(PATH_TO_EXE))", "")
-	./$(PATH_TO_EXE)
-else
-	@echo "\033[31mNo executable found!\033[0m"
-endif
-
-run-release: release
-	./$(PATH_TO_EXE)
-
-run-debug: debug
-	valgrind --leak-check=full --show-leak-kinds=all --vgdb=full -s ./$(PATH_TO_EXE)
-
-$(PATH_TO_EXE): $(OBJECTS)
+$(BINDIR)/$(TARGET): $(OBJECTS)
 	mkdir -p $(BINDIR)
 	$(CC) -o $@ $^ $(CFLAGS) $(LDLIBS)
 	@echo "\033[92mLinking complete!\033[0m"
 
-$(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp $(INCLUDES)
+$(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
 	mkdir -p $(OBJDIR)
-	$(CC) -o $@ -c $< $(CFLAGS) -isystem$(INCLUDE_PATH)
+	$(CC) -o $@ -c $< $(CFLAGS) -I$(INCLUDE_PATH)
+
+run:
+ifneq ($(wildcard $(BINDIR)/*),)
+	$(BINDIR)/$(TARGET)
+else
+	@echo "\033[91mError: $(BINDIR)/$(TARGET) not found!\033[0m"
+endif
 
 
-.PHONY: clean cov
+debug:
+	valgrind --leak-check=full --show-reachable=yes ./$(BINDIR)/$(TARGET)
+
+
+.PHONY: clean 
 clean:
 	rm -f $(OBJDIR)/*.o
 	rm -f $(OBJDIR)/*.gcda
 	rm -f $(OBJDIR)/*.gcno
-	rm -f $(PATH_TO_EXE)
+	rm -f $(BINDIR)/$(TARGET)

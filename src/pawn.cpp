@@ -2,6 +2,17 @@
 
 int Pawn::isLegalMove(int StartCol, int StartLign, int EndCol, int EndLign)
 {
+    // check if the pawn is going up
+    if (color == White)
+    {
+        if (EndLign <= StartLign)
+            return 0;
+    }
+    else
+    {
+        if (EndLign >= StartLign)
+            return 0;
+    }
     // check if it's the first move
     if (StartLign != 1 && StartLign != 6)
     {
@@ -19,10 +30,10 @@ int Pawn::isLegalMove(int StartCol, int StartLign, int EndCol, int EndLign)
     }
 
     // check if the move is vertical
-    if (StartCol == EndCol)
+    if (StartCol != EndCol)
     {
-        return 1;
+        return 0;
     }
 
-    return 0;
+    return 1;
 }
