@@ -12,7 +12,6 @@ int main()
     Game myGame;
     myGame.setTurn(White);
     string movement;
-    Color color = White;
     bool stop(false);
     myGame.affiche();
     do
@@ -27,10 +26,6 @@ int main()
             if (myGame.move(orig, dest) == 1)
             {
                 myGame.affiche();
-                if (color == White)
-                    color = Black;
-                else
-                    color = White;
             }
         }
         else

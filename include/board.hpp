@@ -33,6 +33,10 @@ public:
     int isPathClearPawnBlack(int col_orig, int lign_orig, int col_dest, int lign_dest);
     int isPathClearPawnWhite(int col_orig, int lign_orig, int col_dest, int lign_dest);
 
+    int pawnIsTaking(int col_orig, int lign_orig, int col_dest, int lign_dest);
+
+    int destinationSquare(int col_orig, int lign_orig, int col_dest, int lign_dest);
+
     Piece *getPiece(int lign, int col);
     // void setTurn(Color turn);
     // Color getTurn();

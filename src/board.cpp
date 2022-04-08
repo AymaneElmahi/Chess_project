@@ -168,44 +168,65 @@ Piece *Board::getPiece(int lign, int col)
 
 int Board::isPathClearBishop(int col_orig, int lign_orig, int col_dest, int lign_dest)
 {
-    // check if the path is clear
-    int i = lign_orig, j = col_orig;
-    while (i != lign_dest && j != col_dest)
+    int lign_diff = lign_dest - lign_orig;
+    int col_diff = col_dest - col_orig;
+    int lign_inc = lign_diff / abs(lign_diff);
+    int col_inc = col_diff / abs(col_diff);
+    int lign_cur = lign_orig + lign_inc;
+    int col_cur = col_orig + col_inc;
+    while (lign_cur != lign_dest && col_cur != col_dest)
     {
-        i++;
-        j++;
-        if (board[i][j])
+        if (board[lign_cur][col_cur] != nullptr && lign_cur != lign_dest && col_cur != col_dest)
         {
             return 0;
         }
+        lign_cur += lign_inc;
+        col_cur += col_inc;
     }
     return 1;
 }
 
 int Board::isPathClearRook(int col_orig, int lign_orig, int col_dest, int lign_dest)
 {
-    // check if the movement is vertical or horizontal
-    if (lign_orig == lign_dest)
+    // if move is to the right
+    if (col_dest > col_orig)
     {
-        // check if the path is clear
-        int i = col_orig;
-        while (i != col_dest)
+        for (int i(col_orig + 1); i < col_dest; i++)
         {
-            i++;
-            if (board[lign_orig][i])
+            if (board[lign_orig][i] != nullptr && i != col_dest)
             {
                 return 0;
             }
         }
     }
-    else if (col_orig == col_dest)
+    // if move is to the left
+    else if (col_dest < col_orig)
     {
-        // check if the path is clear
-        int i = lign_orig;
-        while (i != lign_dest)
+        for (int i(col_orig - 1); i > col_dest; i--)
         {
-            i++;
-            if (board[i][col_orig])
+            if (board[lign_orig][i] != nullptr && i != col_dest)
+            {
+                return 0;
+            }
+        }
+    }
+    // if move is to the top
+    else if (lign_dest > lign_orig)
+    {
+        for (int i(lign_orig + 1); i < lign_dest; i++)
+        {
+            if (board[i][col_orig] != nullptr && i != lign_dest)
+            {
+                return 0;
+            }
+        }
+    }
+    // if move is to the bottom
+    else if (lign_dest < lign_orig)
+    {
+        for (int i(lign_orig - 1); i > lign_dest; i--)
+        {
+            if (board[i][col_orig] != nullptr && i != lign_dest)
             {
                 return 0;
             }
@@ -343,6 +364,11 @@ int Board::isPathClearPawnBlack(int col_orig, int lign_orig, int col_dest, int l
 
 int Board::isPathClear(int col_orig, int lign_orig, int col_dest, int lign_dest)
 {
+    // check the destination square
+    if (destinationSquare(col_orig, lign_orig, col_dest, lign_dest) == 0)
+    {
+        return 0;
+    }
     // check if the piece is a bishop
     if (board[lign_orig][col_orig]->get_name() == " \u265D " || board[lign_orig][col_orig]->get_name() == " \u2657 ")
     {
@@ -364,4 +390,47 @@ int Board::isPathClear(int col_orig, int lign_orig, int col_dest, int lign_dest)
         return isPathClearPawn(col_orig, lign_orig, col_dest, lign_dest);
     }
     return 1;
+}
+
+/**
+ * @brief check if there is a piece of the same color in the destination square
+ *
+ */
+int Board::destinationSquare(int col_orig, int lign_orig, int col_dest, int lign_dest)
+{
+    if (board[lign_dest][col_dest] != nullptr)
+    {
+        if (board[lign_dest][col_dest]->get_color() == board[lign_orig][col_orig]->get_color())
+        {
+            cout << "There is a piece of the same color in the destination square" << endl;
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int Board::pawnIsTaking(int col_orig, int lign_orig, int col_dest, int lign_dest)
+{
+    if (lign_dest == lign_orig + 1)
+    {
+        // check if the pawn is taking to the right
+        if (col_dest == col_orig + 1)
+        {
+            if (board[lign_dest][col_dest] != nullptr &&
+                board[lign_dest][col_dest]->get_color() != board[lign_orig][col_orig]->get_color())
+            {
+                return 1;
+            }
+        }
+        // check if the pawn is taking to the left
+        if (col_dest == col_orig - 1)
+        {
+            if (board[lign_dest][col_dest] != nullptr &&
+                board[lign_dest][col_dest]->get_color() != board[lign_orig][col_orig]->get_color())
+            {
+                return 1;
+            }
+        }
+    }
+    return 0;
 }
