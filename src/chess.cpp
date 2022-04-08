@@ -10,7 +10,7 @@ using namespace std;
 int main()
 {
     Game myGame;
-    myGame.getBoard().setTurn(White);
+    myGame.setTurn(White);
     string movement;
     Color color = White;
     bool stop(false);

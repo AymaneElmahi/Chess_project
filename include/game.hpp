@@ -11,10 +11,13 @@ class Game
 {
 protected:
     Board board;
+    Color turn;
 
 public:
     Board getBoard();
     void get_move();
     int move(string startingPos, string endingPos);
     void affiche();
+    Color getTurn();
+    void setTurn(Color turn);
 };
