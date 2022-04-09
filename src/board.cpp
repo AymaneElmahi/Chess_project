@@ -66,6 +66,20 @@ int Board::move(int col_orig, int lign_orig, int col_dest, int lign_dest)
         cout << "Move is not legal" << endl;
         return 0;
     }
+    else if (board[lign_orig][col_orig]->isLegalMove(col_orig, lign_orig, col_dest, lign_dest) == 2)
+    {
+        if (pawnIsTaking(col_orig, lign_orig, col_dest, lign_dest) == 1)
+        {
+            board[lign_dest][col_dest] = board[lign_orig][col_orig];
+            board[lign_orig][col_orig] = nullptr;
+            return 1;
+        }
+        else
+        {
+            cout << "Pawn is not taking" << endl;
+            return 0;
+        }
+    }
 
     // check if the path is clear
     if (isPathClear(col_orig, lign_orig, col_dest, lign_dest) == 0)
@@ -411,7 +425,14 @@ int Board::destinationSquare(int col_orig, int lign_orig, int col_dest, int lign
 
 int Board::pawnIsTaking(int col_orig, int lign_orig, int col_dest, int lign_dest)
 {
-    if (lign_dest == lign_orig + 1)
+    if ((lign_dest == lign_orig + 1 && board[lign_orig][lign_orig]->get_color() == White) ||
+        (lign_dest == lign_orig - 1 && board[lign_orig][lign_orig]->get_color() == Black))
+    {
+        if (board[lign_dest][col_dest] != nullptr)
+        {
+            return 1;
+        }
+    }
     {
         // check if the pawn is taking to the right
         if (col_dest == col_orig + 1)
