@@ -68,6 +68,26 @@ int Board::move(int col_orig, int lign_orig, int col_dest, int lign_dest)
     }
     else if (board[lign_orig][col_orig]->isLegalMove(col_orig, lign_orig, col_dest, lign_dest) == 2)
     {
+        if (isEnPassant(col_orig, lign_orig, col_dest, lign_dest) == 1)
+        {
+            board[lign_dest][col_dest] = board[lign_orig][col_orig];
+            board[lign_orig][col_orig] = nullptr;
+            board[lastMove.EndLign][lastMove.EndCol] = nullptr;
+            board[lign_dest][col_dest]->setPosition(col_dest, lign_dest);
+
+            lastMove.piece = board[lign_orig][col_orig];
+            lastMove.StartCol = col_orig;
+            lastMove.StartLign = lign_orig;
+            lastMove.EndCol = col_dest;
+            lastMove.EndLign = lign_dest;
+
+            return 1;
+        }
+        else
+        {
+            cout << "Move is not legal" << endl;
+            return 0;
+        }
         if (pawnIsTaking(col_orig, lign_orig, col_dest, lign_dest) == 1)
         {
             board[lign_dest][col_dest] = board[lign_orig][col_orig];
@@ -87,6 +107,13 @@ int Board::move(int col_orig, int lign_orig, int col_dest, int lign_dest)
         cout << "Path is not clear" << endl;
         return 0;
     }
+
+    // save the move into last move
+    lastMove.piece = board[lign_orig][col_orig];
+    lastMove.StartCol = col_orig;
+    lastMove.StartLign = lign_orig;
+    lastMove.EndCol = col_dest;
+    lastMove.EndLign = lign_dest;
 
     board[lign_dest][col_dest] = board[lign_orig][col_orig];
     board[lign_orig][col_orig] = nullptr;
@@ -425,8 +452,8 @@ int Board::destinationSquare(int col_orig, int lign_orig, int col_dest, int lign
 
 int Board::pawnIsTaking(int col_orig, int lign_orig, int col_dest, int lign_dest)
 {
-    if ((lign_dest == lign_orig + 1 && board[lign_orig][lign_orig]->get_color() == White) ||
-        (lign_dest == lign_orig - 1 && board[lign_orig][lign_orig]->get_color() == Black))
+    if ((lign_dest == lign_orig + 1 && board[lign_orig][col_orig]->get_color() == White) ||
+        (lign_dest == lign_orig - 1 && board[lign_orig][col_orig]->get_color() == Black))
     {
         if (board[lign_dest][col_dest] != nullptr)
         {
@@ -448,6 +475,67 @@ int Board::pawnIsTaking(int col_orig, int lign_orig, int col_dest, int lign_dest
         {
             if (board[lign_dest][col_dest] != nullptr &&
                 board[lign_dest][col_dest]->get_color() != board[lign_orig][col_orig]->get_color())
+            {
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+int Board::isEnPassant(int col_orig, int lign_orig, int col_dest, int lign_dest)
+{
+    // white pawn is taking
+    if (board[lign_orig][col_orig]->get_name() == " \u2659 ")
+    {
+        if (lign_orig == 4 && lign_dest == 5 && (col_dest == col_orig + 1 || col_dest == col_orig - 1))
+        {
+            // check the last move
+            // check if the pawn is taking to the right
+            if (lastMove.StartCol == col_orig + 1 &&
+                lastMove.StartLign == 6 &&
+                lastMove.EndCol == col_orig + 1 &&
+                lastMove.EndLign == 4 &&
+                lastMove.piece->get_name() == " \u265F " &&
+                col_dest == col_orig + 1)
+            {
+                return 1;
+            }
+            // check if the pawn is taking to the left
+            if (lastMove.StartCol == col_orig - 1 &&
+                lastMove.StartLign == 6 &&
+                lastMove.EndCol == col_orig - 1 &&
+                lastMove.EndLign == 4 &&
+                lastMove.piece->get_name() == " \u265F " &&
+                col_dest == col_orig - 1)
+            {
+                return 1;
+            }
+        }
+    }
+    // black pawn is taking
+    if (board[lign_orig][col_orig]->get_name() == " \u265F ")
+    {
+        if (lign_orig == 3 && lign_dest == 2 && (col_dest == col_orig + 1 || col_dest == col_orig - 1))
+        {
+            // check the last move
+            // check if the pawn is taking to the right
+            if (lastMove.StartCol == col_orig + 1 &&
+                lastMove.StartLign == 1 &&
+                lastMove.EndCol == col_orig + 1 &&
+                lastMove.EndLign == 3 &&
+                lastMove.piece->get_name() == " \u2659 " &&
+                col_dest == col_orig + 1)
+            {
+                return 1;
+            }
+            // check if the pawn is taking to the left
+            if (lastMove.StartCol == col_orig - 1 &&
+                lastMove.StartLign == 1 &&
+                lastMove.EndCol == col_orig - 1 &&
+                lastMove.EndLign == 3 &&
+                lastMove.piece->get_name() == " \u2659 " &&
+                col_dest == col_orig - 1)
             {
                 return 1;
             }

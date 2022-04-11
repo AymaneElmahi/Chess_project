@@ -29,7 +29,7 @@ int Pawn::isLegalMove(int StartCol, int StartLign, int EndCol, int EndLign)
         return 0;
     }
 
-    // check if the move is vertical
+    // check if the move is diagonal
     if (StartCol != EndCol)
     {
         return 2;

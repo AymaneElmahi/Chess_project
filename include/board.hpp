@@ -15,6 +15,15 @@
 
 using namespace std;
 
+struct lastMove
+{
+    Piece *piece = nullptr;
+    int StartCol = 0;
+    int StartLign = 0;
+    int EndCol = 0;
+    int EndLign = 0;
+};
+
 class Board
 {
 
@@ -34,6 +43,7 @@ public:
     int isPathClearPawnWhite(int col_orig, int lign_orig, int col_dest, int lign_dest);
 
     int pawnIsTaking(int col_orig, int lign_orig, int col_dest, int lign_dest);
+    int isEnPassant(int col_orig, int lign_orig, int col_dest, int lign_dest);
 
     int destinationSquare(int col_orig, int lign_orig, int col_dest, int lign_dest);
 
@@ -47,4 +57,5 @@ protected:
     Piece *blackPieces[8];
     Piece *whitePawns[8];
     Piece *blackPawns[8];
+    struct lastMove lastMove;
 };
