@@ -83,11 +83,6 @@ int Board::move(int col_orig, int lign_orig, int col_dest, int lign_dest)
 
             return 1;
         }
-        else
-        {
-            cout << "Move is not legal" << endl;
-            return 0;
-        }
         if (pawnIsTaking(col_orig, lign_orig, col_dest, lign_dest) == 1)
         {
             board[lign_dest][col_dest] = board[lign_orig][col_orig];
@@ -455,9 +450,9 @@ int Board::pawnIsTaking(int col_orig, int lign_orig, int col_dest, int lign_dest
     if ((lign_dest == lign_orig + 1 && board[lign_orig][col_orig]->get_color() == White) ||
         (lign_dest == lign_orig - 1 && board[lign_orig][col_orig]->get_color() == Black))
     {
-        if (board[lign_dest][col_dest] != nullptr)
+        if (board[lign_dest][col_dest] == nullptr)
         {
-            return 1;
+            return 0;
         }
     }
     {
