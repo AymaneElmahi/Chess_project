@@ -1,4 +1,4 @@
-# teste l'échec (f1b5), puis un mouvement illegal du roi noir (e8d7)
+# teste l'échec (f1b5), puis un mouvement illegal du roi noir(e8d7)
 # qui reste en échec. Le coup suivant doit donc être à nouveau noir (c7c6).
 # Si le programme demande aux blancs de jouer après e8d7 c'est que l'illégalité
 # du mouvement e8d7 n'est pas vérifié.
