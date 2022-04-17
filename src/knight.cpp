@@ -11,14 +11,20 @@
  */
 int Knight::isLegalMove(int StartCol, int StartLign, int EndCol, int EndLign)
 {
-    // check if the move is vertical or horizontal
-    if (abs(StartCol - EndCol) == 1 && abs(StartLign - EndLign) == 2)
+    // test the 8 squares the knight can move to
+    if (((EndCol == StartCol + 1) && (EndLign == StartLign + 2)) ||
+        ((EndCol == StartCol + 1) && (EndLign == StartLign - 2)) ||
+        ((EndCol == StartCol - 1) && (EndLign == StartLign + 2)) ||
+        ((EndCol == StartCol - 1) && (EndLign == StartLign - 2)) ||
+        ((EndCol == StartCol + 2) && (EndLign == StartLign + 1)) ||
+        ((EndCol == StartCol + 2) && (EndLign == StartLign - 1)) ||
+        ((EndCol == StartCol - 2) && (EndLign == StartLign + 1)) ||
+        ((EndCol == StartCol - 2) && (EndLign == StartLign - 1)))
     {
         return 1;
     }
-    if (abs(StartCol - EndCol) == 2 && abs(StartLign - EndLign) == 1)
+    else
     {
-        return 1;
+        return 0;
     }
-    return 0;
 }

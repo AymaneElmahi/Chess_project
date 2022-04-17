@@ -33,3 +33,8 @@ void Piece::setPosition(int Col, int Lign)
 {
     position = Square(Col, Lign);
 }
+
+Piece *Piece::clone()
+{
+    return new Piece(color, name, position);
+}

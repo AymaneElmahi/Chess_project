@@ -103,6 +103,13 @@ int Board::move(int col_orig, int lign_orig, int col_dest, int lign_dest)
         return 0;
     }
 
+    // test if the king will be in check after the move, if yes, ask the player to move the king out of the check
+    if (kingWillBeInCheckAfterMove(lign_orig, col_orig, lign_dest, col_dest))
+    {
+        cout << "The king is in check, or will be in check after this move, please move the king out of the check" << endl;
+        return 0;
+    }
+
     // save the move into last move
     lastMove.piece = board[lign_orig][col_orig];
     lastMove.StartCol = col_orig;
@@ -112,7 +119,7 @@ int Board::move(int col_orig, int lign_orig, int col_dest, int lign_dest)
 
     board[lign_dest][col_dest] = board[lign_orig][col_orig];
     board[lign_orig][col_orig] = nullptr;
-    board[lign_dest][col_dest]->setPosition(col_dest, lign_dest);
+    board[lign_dest][col_dest]->setPosition(lign_dest, col_dest);
 
     return 1;
 }
@@ -536,5 +543,527 @@ int Board::isEnPassant(int col_orig, int lign_orig, int col_dest, int lign_dest)
             }
         }
     }
+    return 0;
+}
+
+/**
+ * @brief check if the piece is attacking the opponent king
+ * @return int
+ */
+int Board::isAttackingKing(Piece *piece)
+{
+    // get the opponent king name
+    string king_name, rook_name, bishop_name, queen_name, pawn_name, knight_name;
+    if (piece->get_color() == Black)
+    {
+        king_name = " \u2654 ";
+        rook_name = " \u265C ";
+        bishop_name = " \u265D ";
+        queen_name = " \u265B ";
+        pawn_name = " \u265F ";
+        knight_name = " \u265E ";
+    }
+    else
+    {
+        king_name = " \u265A ";
+        rook_name = " \u2656 ";
+        bishop_name = " \u2657 ";
+        queen_name = " \u2655 ";
+        pawn_name = " \u2659 ";
+        knight_name = " \u2658 ";
+    }
+
+    int lign_orig = piece->get_position().get_lign();
+    int col_orig = piece->get_position().get_column();
+    // if the piece is a rook
+    if (piece->get_name() == rook_name)
+    {
+        int other_piece = 0;
+        // check the right side
+        for (int i = col_orig + 1; i < NBCOL; i++)
+        {
+            if (board[lign_orig][i] != nullptr &&
+                board[lign_orig][i]->get_name() != king_name)
+            {
+                other_piece = 1;
+                break;
+            }
+            if (board[lign_orig][i] != nullptr &&
+                board[lign_orig][i]->get_name() == king_name &&
+                other_piece == 0)
+            {
+                return 1;
+            }
+        }
+        // check the left side
+        other_piece = 0;
+        for (int i = col_orig - 1; i >= 0; i--)
+        {
+            if (board[lign_orig][i] != nullptr &&
+                board[lign_orig][i]->get_name() != king_name)
+            {
+                other_piece = 1;
+                break;
+            }
+            if (board[lign_orig][i] != nullptr &&
+                board[lign_orig][i]->get_name() == king_name &&
+                other_piece == 0)
+            {
+                return 1;
+            }
+        }
+        // check the top side
+        other_piece = 0;
+        for (int i = lign_orig - 1; i >= 0; i--)
+        {
+            if (board[i][col_orig] != nullptr &&
+                board[i][col_orig]->get_name() != king_name)
+            {
+                other_piece = 1;
+                break;
+            }
+            if (board[i][col_orig] != nullptr &&
+                board[i][col_orig]->get_name() == king_name &&
+                other_piece == 0)
+            {
+                return 1;
+            }
+        }
+        // check the bottom side
+        other_piece = 0;
+        for (int i = lign_orig + 1; i < NBLIGN; i++)
+        {
+            if (board[i][col_orig] != nullptr &&
+                board[i][col_orig]->get_name() != king_name)
+            {
+                other_piece = 1;
+                break;
+            }
+            if (board[i][col_orig] != nullptr &&
+                board[i][col_orig]->get_name() == king_name &&
+                other_piece == 0)
+            {
+                return 1;
+            }
+        }
+    }
+    // if the piece is a bishop
+    if (piece->get_name() == bishop_name)
+    {
+        int other_piece = 0;
+        // check the top right side
+        for (int i = 1; i < NBCOL - col_orig; i++)
+        {
+            if (lign_orig - i < 0 || col_orig + i >= NBCOL)
+            {
+                break;
+            }
+            if (board[lign_orig - i][col_orig + i] != nullptr &&
+                board[lign_orig - i][col_orig + i]->get_name() != king_name)
+            {
+                other_piece = 1;
+                break;
+            }
+            if (board[lign_orig - i][col_orig + i] != nullptr &&
+                board[lign_orig - i][col_orig + i]->get_name() == king_name &&
+                other_piece == 0)
+            {
+                return 1;
+            }
+        }
+        // check the bottom right side
+        other_piece = 0;
+        for (int i = 1; i < NBLIGN - lign_orig; i++)
+        {
+            if (lign_orig + i >= NBLIGN || col_orig + i >= NBCOL)
+            {
+                break;
+            }
+            if (board[lign_orig + i][col_orig + i] != nullptr &&
+                board[lign_orig + i][col_orig + i]->get_name() != king_name)
+            {
+                other_piece = 1;
+                break;
+            }
+            if (board[lign_orig + i][col_orig + i] != nullptr &&
+                board[lign_orig + i][col_orig + i]->get_name() == king_name &&
+                other_piece == 0)
+            {
+                return 1;
+            }
+        }
+        // check the top left side
+        other_piece = 0;
+        for (int i = 1; i < col_orig; i++)
+        {
+            if (lign_orig - i < 0 || col_orig - i < 0)
+            {
+                break;
+            }
+            if (board[lign_orig - i][col_orig - i] != nullptr &&
+                board[lign_orig - i][col_orig - i]->get_name() != king_name)
+            {
+                other_piece = 1;
+                break;
+            }
+            if (board[lign_orig - i][col_orig - i] != nullptr &&
+                board[lign_orig - i][col_orig - i]->get_name() == king_name &&
+                other_piece == 0)
+            {
+                return 1;
+            }
+        }
+        // check the bottom left side
+        other_piece = 0;
+        for (int i = 1; i < NBLIGN - lign_orig; i++)
+        {
+            if (lign_orig + i >= NBLIGN || col_orig - i < 0)
+            {
+                break;
+            }
+            if (board[lign_orig + i][col_orig - i] != nullptr &&
+                board[lign_orig + i][col_orig - i]->get_name() != king_name)
+            {
+                other_piece = 1;
+                break;
+            }
+            if (board[lign_orig + i][col_orig - i] != nullptr &&
+                board[lign_orig + i][col_orig - i]->get_name() == king_name &&
+                other_piece == 0)
+            {
+                return 1;
+            }
+        }
+    }
+    // if the piece is a queen
+    if (piece->get_name() == queen_name)
+    {
+        int other_piece = 0;
+        // check the right side
+        for (int i = col_orig + 1; i < NBCOL; i++)
+        {
+            if (board[lign_orig][i] != nullptr &&
+                board[lign_orig][i]->get_name() != king_name)
+            {
+                other_piece = 1;
+                break;
+            }
+            if (board[lign_orig][i] != nullptr &&
+                board[lign_orig][i]->get_name() == king_name &&
+                other_piece == 0)
+            {
+                return 1;
+            }
+        }
+        // check the left side
+        other_piece = 0;
+        for (int i = col_orig - 1; i >= 0; i--)
+        {
+            if (board[lign_orig][i] != nullptr &&
+                board[lign_orig][i]->get_name() != king_name)
+            {
+                other_piece = 1;
+                break;
+            }
+            if (board[lign_orig][i] != nullptr &&
+                board[lign_orig][i]->get_name() == king_name &&
+                other_piece == 0)
+            {
+                return 1;
+            }
+        }
+        // check the top side
+        other_piece = 0;
+        for (int i = lign_orig - 1; i >= 0; i--)
+        {
+            if (board[i][col_orig] != nullptr &&
+                board[i][col_orig]->get_name() != king_name)
+            {
+                other_piece = 1;
+                break;
+            }
+            if (board[i][col_orig] != nullptr &&
+                board[i][col_orig]->get_name() == king_name &&
+                other_piece == 0)
+            {
+                return 1;
+            }
+        }
+        // check the bottom side
+        other_piece = 0;
+        for (int i = lign_orig + 1; i < NBLIGN; i++)
+        {
+            if (board[i][col_orig] != nullptr &&
+                board[i][col_orig]->get_name() != king_name)
+            {
+                other_piece = 1;
+                break;
+            }
+            if (board[i][col_orig] != nullptr &&
+                board[i][col_orig]->get_name() == king_name &&
+                other_piece == 0)
+            {
+                return 1;
+            }
+        }
+        // check the top right side
+        other_piece = 0;
+        for (int i = 1; i < NBCOL - col_orig; i++)
+        {
+            if (lign_orig - i < 0 || col_orig + i >= NBCOL)
+            {
+                break;
+            }
+            if (board[lign_orig - i][col_orig + i] != nullptr &&
+                board[lign_orig - i][col_orig + i]->get_name() != king_name)
+            {
+                other_piece = 1;
+                break;
+            }
+            if (board[lign_orig - i][col_orig + i] != nullptr &&
+                board[lign_orig - i][col_orig + i]->get_name() == king_name &&
+                other_piece == 0)
+            {
+                return 1;
+            }
+        }
+        // check the bottom right side
+        other_piece = 0;
+        for (int i = 1; i < NBLIGN - lign_orig; i++)
+        {
+            if (lign_orig + i >= NBLIGN || col_orig + i >= NBCOL)
+            {
+                break;
+            }
+            if (board[lign_orig + i][col_orig + i] != nullptr &&
+                board[lign_orig + i][col_orig + i]->get_name() != king_name)
+            {
+                other_piece = 1;
+                break;
+            }
+            if (board[lign_orig + i][col_orig + i] != nullptr &&
+                board[lign_orig + i][col_orig + i]->get_name() == king_name &&
+                other_piece == 0)
+            {
+                return 1;
+            }
+        }
+        // check the top left side
+        other_piece = 0;
+        for (int i = 1; i < col_orig; i++)
+        {
+            if (lign_orig - i < 0 || col_orig - i < 0)
+            {
+                break;
+            }
+            if (board[lign_orig - i][col_orig - i] != nullptr &&
+                board[lign_orig - i][col_orig - i]->get_name() != king_name)
+            {
+                other_piece = 1;
+                break;
+            }
+            if (board[lign_orig - i][col_orig - i] != nullptr &&
+                board[lign_orig - i][col_orig - i]->get_name() == king_name &&
+                other_piece == 0)
+            {
+                return 1;
+            }
+        }
+        // check the bottom left side
+        other_piece = 0;
+        for (int i = 1; i < NBLIGN - lign_orig; i++)
+        {
+            if (lign_orig + i >= NBLIGN || col_orig - i < 0)
+            {
+                break;
+            }
+            if (board[lign_orig + i][col_orig - i] != nullptr &&
+                board[lign_orig + i][col_orig - i]->get_name() != king_name)
+            {
+                other_piece = 1;
+                break;
+            }
+            if (board[lign_orig + i][col_orig - i] != nullptr &&
+                board[lign_orig + i][col_orig - i]->get_name() == king_name &&
+                other_piece == 0)
+            {
+                return 1;
+            }
+        }
+    }
+    // if the piece is a knight
+    if (piece->get_name() == knight_name)
+    {
+        // check the right side
+        if (col_orig + 2 < NBCOL && lign_orig - 1 >= 0 &&
+            board[lign_orig - 1][col_orig + 2] != nullptr &&
+            board[lign_orig - 1][col_orig + 2]->get_name() == king_name)
+        {
+            return 1;
+        }
+        if (col_orig + 2 < NBCOL && lign_orig + 1 < NBLIGN &&
+            board[lign_orig + 1][col_orig + 2] != nullptr &&
+            board[lign_orig + 1][col_orig + 2]->get_name() == king_name)
+        {
+            return 1;
+        }
+        // check the left side
+        if (col_orig - 2 >= 0 && lign_orig - 1 >= 0 &&
+            board[lign_orig - 1][col_orig - 2] != nullptr &&
+            board[lign_orig - 1][col_orig - 2]->get_name() == king_name)
+        {
+            return 1;
+        }
+        if (col_orig - 2 >= 0 && lign_orig + 1 < NBLIGN &&
+            board[lign_orig + 1][col_orig - 2] != nullptr &&
+            board[lign_orig + 1][col_orig - 2]->get_name() == king_name)
+        {
+            return 1;
+        }
+        // check the top side
+        if (lign_orig - 2 >= 0 && col_orig - 1 >= 0 &&
+            board[lign_orig - 2][col_orig - 1] != nullptr &&
+            board[lign_orig - 2][col_orig - 1]->get_name() == king_name)
+        {
+            return 1;
+        }
+        if (lign_orig - 2 >= 0 && col_orig + 1 < NBCOL &&
+            board[lign_orig - 2][col_orig + 1] != nullptr &&
+            board[lign_orig - 2][col_orig + 1]->get_name() == king_name)
+        {
+            return 1;
+        }
+        // check the bottom side
+        if (lign_orig + 2 < NBLIGN && col_orig - 1 >= 0 &&
+            board[lign_orig + 2][col_orig - 1] != nullptr &&
+            board[lign_orig + 2][col_orig - 1]->get_name() == king_name)
+        {
+            return 1;
+        }
+        if (lign_orig + 2 < NBLIGN && col_orig + 1 < NBCOL &&
+            board[lign_orig + 2][col_orig + 1] != nullptr &&
+            board[lign_orig + 2][col_orig + 1]->get_name() == king_name)
+        {
+            return 1;
+        }
+    }
+    // if the piece is a white pawn
+    if (piece->get_name() == pawn_name && piece->get_color() == White)
+    {
+        // check the two squares the pawn is attacking
+        if (lign_orig + 1 >= 0 && col_orig + 1 < NBCOL &&
+            board[lign_orig - 1][col_orig + 1] != nullptr &&
+            board[lign_orig - 1][col_orig + 1]->get_name() == king_name)
+        {
+            return 1;
+        }
+        if (lign_orig + 1 >= 0 && col_orig - 1 >= 0 &&
+            board[lign_orig - 1][col_orig - 1] != nullptr &&
+            board[lign_orig - 1][col_orig - 1]->get_name() == king_name)
+        {
+            return 1;
+        }
+    }
+    // if the piece is a black pawn
+    if (piece->get_name() == pawn_name && piece->get_color() == Black)
+    {
+        // check the two squares the pawn is attacking
+        if (lign_orig - 1 >= 0 && col_orig + 1 < NBCOL &&
+            board[lign_orig + 1][col_orig + 1] != nullptr &&
+            board[lign_orig + 1][col_orig + 1]->get_name() == king_name)
+        {
+            return 1;
+        }
+        if (lign_orig - 1 >= 0 && col_orig - 1 >= 0 &&
+            board[lign_orig + 1][col_orig - 1] != nullptr &&
+            board[lign_orig + 1][col_orig - 1]->get_name() == king_name)
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int Board::isKingInCheck(Color color)
+{
+    // check if a piece is attacking the king
+    for (int i = 0; i < NBLIGN; i++)
+    {
+        for (int j = 0; j < NBCOL; j++)
+        {
+            if (board[i][j] != nullptr)
+            {
+                if (board[i][j]->get_color() != color)
+                {
+                    if (isAttackingKing(board[i][j]))
+                    {
+                        return 1;
+                    }
+                }
+            }
+        }
+    }
+    return 0;
+}
+
+/**
+ * @brief create temporary board to check if the king will be in check after the move
+ *  if the king is in check after the move, the move is not possible
+ * @param piece
+ * @param lign_orig
+ * @param col_orig
+ * @param lign_dest
+ * @param col_dest
+ * @return int 1 if the king is in check after the move, 0 otherwise
+ */
+int Board::kingWillBeInCheckAfterMove(int lign_orig, int col_orig, int lign_dest, int col_dest)
+{
+    // simulate the move, save the piece in case it's a taking move
+    Piece *piece_to_save = board[lign_dest][col_dest];
+    Piece *piece = board[lign_orig][col_orig];
+    board[lign_orig][col_orig] = nullptr;
+    board[lign_dest][col_dest] = piece;
+    // set the new position of the piece
+    piece->setPosition(lign_dest, col_dest);
+    // check if the king is in check
+    int check = isKingInCheck(piece->get_color());
+    // undo the move
+    board[lign_orig][col_orig] = piece;
+    board[lign_dest][col_dest] = piece_to_save;
+    piece->setPosition(lign_orig, col_orig);
+    return check;
+}
+
+Piece ***Board::getBoard()
+{
+    return (Piece ***)board;
+}
+
+int simulateMove(Piece ***board, int lign_orig, int col_orig, int lign_dest, int col_dest)
+{
+    // create a temporary board
+    Board *temp_board = new Board();
+    // put the pieces on the temporary board
+    for (int i = 0; i < NBLIGN; i++)
+    {
+        for (int j = 0; j < NBCOL; j++)
+        {
+            if (board[i][j] != nullptr)
+            {
+                temp_board->getBoard()[i][j] = board[i][j]->clone();
+            }
+            else
+                temp_board->getBoard()[i][j] = nullptr;
+        }
+    }
+    // move the piece on the temporary board
+    temp_board->move(lign_orig, col_orig, lign_dest, col_dest);
+    // check if the king is in check after the move
+    if (temp_board->isKingInCheck(board[lign_dest][col_dest]->get_color()))
+    {
+        delete temp_board;
+        return 1;
+    }
+    delete temp_board;
     return 0;
 }

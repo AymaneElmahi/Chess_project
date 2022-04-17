@@ -44,12 +44,14 @@ public:
 
     int pawnIsTaking(int col_orig, int lign_orig, int col_dest, int lign_dest);
     int isEnPassant(int col_orig, int lign_orig, int col_dest, int lign_dest);
+    int isAttackingKing(Piece *piece);
+    int isKingInCheck(Color color);
+    int kingWillBeInCheckAfterMove(int lign_orig, int col_orig, int lign_dest, int col_dest);
 
     int destinationSquare(int col_orig, int lign_orig, int col_dest, int lign_dest);
 
     Piece *getPiece(int lign, int col);
-    // void setTurn(Color turn);
-    // Color getTurn();
+    Piece ***getBoard();
 
 protected:
     Piece *board[8][8];
