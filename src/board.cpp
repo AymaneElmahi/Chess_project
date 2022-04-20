@@ -70,6 +70,13 @@ int Board::move(int col_orig, int lign_orig, int col_dest, int lign_dest)
     {
         if (isEnPassant(col_orig, lign_orig, col_dest, lign_dest) == 1)
         {
+            // test if the king will be in check after the move, if yes, ask the player to move the king out of the check
+            if (kingWillBeInCheckAfterMove(lign_orig, col_orig, lign_dest, col_dest))
+            {
+                cout << "The king is in check, or will be in check after this move, please move the king out of the check" << endl;
+                return 0;
+            }
+
             board[lign_dest][col_dest] = board[lign_orig][col_orig];
             board[lign_orig][col_orig] = nullptr;
             board[lastMove.EndLign][lastMove.EndCol] = nullptr;
@@ -81,12 +88,59 @@ int Board::move(int col_orig, int lign_orig, int col_dest, int lign_dest)
             lastMove.EndCol = col_dest;
             lastMove.EndLign = lign_dest;
 
+            Color otherColor;
+            if (board[lign_dest][col_dest]->get_color() == White)
+            {
+                otherColor = Black;
+            }
+            else
+            {
+                otherColor = White;
+            }
+            if (isKingInCheck(otherColor))
+            {
+                cout << "Check !" << endl;
+            }
+
             return 1;
         }
         if (pawnIsTaking(col_orig, lign_orig, col_dest, lign_dest) == 1)
         {
+            // test if the king will be in check after the move, if yes, ask the player to move the king out of the check
+            if (kingWillBeInCheckAfterMove(lign_orig, col_orig, lign_dest, col_dest))
+            {
+                cout << "The king is in check, or will be in check after this move, please move the king out of the check" << endl;
+                return 0;
+            }
+            if (isPromotion(lign_orig, col_orig, lign_dest, col_dest) == 1)
+            {
+                promotion(lign_orig, col_orig, lign_dest, col_dest);
+                return 1;
+            }
             board[lign_dest][col_dest] = board[lign_orig][col_orig];
             board[lign_orig][col_orig] = nullptr;
+
+            // save last move
+            lastMove.piece = board[lign_orig][col_orig];
+            lastMove.StartCol = col_orig;
+            lastMove.StartLign = lign_orig;
+            lastMove.EndCol = col_dest;
+            lastMove.EndLign = lign_dest;
+
+            Color otherColor;
+            if (board[lign_dest][col_dest]->get_color() == White)
+            {
+                otherColor = Black;
+            }
+            else
+            {
+                otherColor = White;
+            }
+            if (isKingInCheck(otherColor))
+            {
+                cout << "Check !" << endl;
+            }
+
             return 1;
         }
         else
@@ -110,6 +164,13 @@ int Board::move(int col_orig, int lign_orig, int col_dest, int lign_dest)
         return 0;
     }
 
+    // check if the move is a promotion
+    if (isPromotion(lign_orig, col_orig, lign_dest, col_dest) == 1)
+    {
+        promotion(lign_orig, col_orig, lign_dest, col_dest);
+        return 1;
+    }
+
     // save the move into last move
     lastMove.piece = board[lign_orig][col_orig];
     lastMove.StartCol = col_orig;
@@ -120,6 +181,22 @@ int Board::move(int col_orig, int lign_orig, int col_dest, int lign_dest)
     board[lign_dest][col_dest] = board[lign_orig][col_orig];
     board[lign_orig][col_orig] = nullptr;
     board[lign_dest][col_dest]->setPosition(lign_dest, col_dest);
+
+    // test if the king is in check now, if yes, ask the player to move the king out of the check
+    // get the other color
+    Color otherColor;
+    if (board[lign_dest][col_dest]->get_color() == White)
+    {
+        otherColor = Black;
+    }
+    else
+    {
+        otherColor = White;
+    }
+    if (isKingInCheck(otherColor))
+    {
+        cout << "Check !" << endl;
+    }
 
     return 1;
 }
@@ -518,7 +595,9 @@ int Board::isEnPassant(int col_orig, int lign_orig, int col_dest, int lign_dest)
     // black pawn is taking
     if (board[lign_orig][col_orig]->get_name() == " \u265F ")
     {
-        if (lign_orig == 3 && lign_dest == 2 && (col_dest == col_orig + 1 || col_dest == col_orig - 1))
+        if (lign_orig == 3 &&
+            lign_dest == 2 &&
+            (col_dest == col_orig + 1 || col_dest == col_orig - 1))
         {
             // check the last move
             // check if the pawn is taking to the right
@@ -952,14 +1031,14 @@ int Board::isAttackingKing(Piece *piece)
     {
         // check the two squares the pawn is attacking
         if (lign_orig + 1 >= 0 && col_orig + 1 < NBCOL &&
-            board[lign_orig - 1][col_orig + 1] != nullptr &&
-            board[lign_orig - 1][col_orig + 1]->get_name() == king_name)
+            board[lign_orig + 1][col_orig + 1] != nullptr &&
+            board[lign_orig + 1][col_orig + 1]->get_name() == king_name)
         {
             return 1;
         }
         if (lign_orig + 1 >= 0 && col_orig - 1 >= 0 &&
-            board[lign_orig - 1][col_orig - 1] != nullptr &&
-            board[lign_orig - 1][col_orig - 1]->get_name() == king_name)
+            board[lign_orig + 1][col_orig - 1] != nullptr &&
+            board[lign_orig + 1][col_orig - 1]->get_name() == king_name)
         {
             return 1;
         }
@@ -969,14 +1048,14 @@ int Board::isAttackingKing(Piece *piece)
     {
         // check the two squares the pawn is attacking
         if (lign_orig - 1 >= 0 && col_orig + 1 < NBCOL &&
-            board[lign_orig + 1][col_orig + 1] != nullptr &&
-            board[lign_orig + 1][col_orig + 1]->get_name() == king_name)
+            board[lign_orig - 1][col_orig + 1] != nullptr &&
+            board[lign_orig - 1][col_orig + 1]->get_name() == king_name)
         {
             return 1;
         }
         if (lign_orig - 1 >= 0 && col_orig - 1 >= 0 &&
-            board[lign_orig + 1][col_orig - 1] != nullptr &&
-            board[lign_orig + 1][col_orig - 1]->get_name() == king_name)
+            board[lign_orig - 1][col_orig - 1] != nullptr &&
+            board[lign_orig - 1][col_orig - 1]->get_name() == king_name)
         {
             return 1;
         }
@@ -1018,7 +1097,8 @@ int Board::isKingInCheck(Color color)
  */
 int Board::kingWillBeInCheckAfterMove(int lign_orig, int col_orig, int lign_dest, int col_dest)
 {
-    // simulate the move, save the piece in case it's a taking move
+
+    // simulate the move, save the piece in case it's a taking move, also check if it's en passant
     Piece *piece_to_save = board[lign_dest][col_dest];
     Piece *piece = board[lign_orig][col_orig];
     board[lign_orig][col_orig] = nullptr;
@@ -1066,4 +1146,132 @@ int simulateMove(Piece ***board, int lign_orig, int col_orig, int lign_dest, int
     }
     delete temp_board;
     return 0;
+}
+
+int Board::isPromotion(int lign_orig, int col_orig, int lign_dest, int col_dest)
+{
+    string pawn_name;
+    // get pawn name in fonction of the color
+    if (board[lign_orig][col_orig]->get_color() == White)
+    {
+        pawn_name = " \u2659 ";
+    }
+    else
+    {
+        pawn_name = " \u265F ";
+    }
+    // check if the piece is a pawn
+    if (board[lign_orig][col_orig]->get_name() == pawn_name)
+    {
+        // check if the pawn is on the last line
+        if (board[lign_orig][col_orig]->get_color() == White && lign_dest == NBLIGN - 1)
+        {
+            return 1;
+        }
+        if (board[lign_orig][col_orig]->get_color() == Black && lign_dest == 0)
+        {
+            return 1;
+        }
+    }
+    // not use col_dest
+    UNUSED(col_dest);
+    return 0;
+}
+
+/**
+ * @brief check if the move is possible, ask the user for the promotion piece, and apply the move
+ *
+ * @param lign_orig
+ * @param col_orig
+ * @param lign_dest
+ * @param col_dest
+ * @return int
+ */
+int Board::promotion(int lign_orig, int col_orig, int lign_dest, int col_dest)
+{
+    string piece_name;
+    cout << "Choose the piece you want to promote your pawn to :" << endl;
+    cout << "1. Queen" << endl;
+    cout << "2. Rook" << endl;
+    cout << "3. Bishop" << endl;
+    cout << "4. Knight" << endl;
+    cin >> piece_name;
+    // check if the piece name is valid
+    while (piece_name != "Queen" && piece_name != "Rook" && piece_name != "Bishop" && piece_name != "Knight")
+    {
+        cout << "Invalid piece name, please choose a valid piece name :" << endl;
+        cout << "1. Queen" << endl;
+        cout << "2. Rook" << endl;
+        cout << "3. Bishop" << endl;
+        cout << "4. Knight" << endl;
+        cin >> piece_name;
+    }
+    // create the piece
+    Piece *piece = nullptr;
+    Color color = board[lign_orig][col_orig]->get_color();
+    if (piece_name == "Queen" && color == White)
+    {
+        piece = new Queen(color, " \u2655 ", Square(lign_dest, col_dest));
+    }
+    else if (piece_name == "Queen" && color == Black)
+    {
+        piece = new Queen(color, " \u265B ", Square(lign_dest, col_dest));
+    }
+    else if (piece_name == "Rook" && color == White)
+    {
+        piece = new Rook(color, " \u2656 ", Square(lign_dest, col_dest));
+    }
+    else if (piece_name == "Rook" && color == Black)
+    {
+        piece = new Rook(color, " \u265C ", Square(lign_dest, col_dest));
+    }
+    else if (piece_name == "Bishop" && color == White)
+    {
+        piece = new Bishop(color, " \u2657 ", Square(lign_dest, col_dest));
+    }
+    else if (piece_name == "Bishop" && color == Black)
+    {
+        piece = new Bishop(color, " \u265D ", Square(lign_dest, col_dest));
+    }
+    else if (piece_name == "Knight" && color == White)
+    {
+        piece = new Knight(color, " \u2658 ", Square(lign_dest, col_dest));
+    }
+    else if (piece_name == "Knight" && color == Black)
+    {
+        piece = new Knight(color, " \u265E ", Square(lign_dest, col_dest));
+    }
+    // move the piece
+    move(lign_orig, col_orig, lign_dest, col_dest);
+    // delete the pawn
+    delete board[lign_orig][col_orig];
+    board[lign_orig][col_orig] = nullptr;
+    // put the new piece on the board
+    board[lign_dest][col_dest] = piece;
+    piece->setPosition(lign_dest, col_dest);
+
+    // save last move
+    lastMove.piece = board[lign_orig][col_orig];
+    lastMove.StartCol = col_orig;
+    lastMove.StartLign = lign_orig;
+    lastMove.EndCol = col_dest;
+    lastMove.EndLign = lign_dest;
+
+    // test if the king is in check now, if yes, ask the player to move the king out of the check
+    // get the other color
+    Color otherColor;
+    if (board[lign_dest][col_dest]->get_color() == White)
+    {
+        otherColor = Black;
+    }
+    else
+    {
+        otherColor = White;
+    }
+    if (isKingInCheck(otherColor))
+    {
+        cout << "Check !" << endl;
+    }
+
+    return 1;
 }
