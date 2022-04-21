@@ -182,6 +182,18 @@ int Board::move(int col_orig, int lign_orig, int col_dest, int lign_dest)
     board[lign_orig][col_orig] = nullptr;
     board[lign_dest][col_dest]->setPosition(lign_dest, col_dest);
 
+    // if king is moved, update the king position
+    if (board[lign_dest][col_dest]->get_name() == " \u2654 ")
+    {
+        whiteKingPos = {lign_dest, col_dest};
+        board[lign_dest][col_dest]->setHasMoved(1);
+    }
+    if (board[lign_dest][col_dest]->get_name() == " \u265A ")
+    {
+        blackKingPos = {lign_dest, col_dest};
+        board[lign_dest][col_dest]->setHasMoved(1);
+    }
+
     // test if the king is in check now, if yes, ask the player to move the king out of the check
     // get the other color
     Color otherColor;
@@ -204,9 +216,7 @@ int Board::move(int col_orig, int lign_orig, int col_dest, int lign_dest)
 Board::Board()
 {
 
-    allocMemBoard(); // --> alloue un tableau équivalent à un Piece *[8][8]
-                     //     en initialisant les cases à nullptr
-                     //     et alloue des vecteurs whitePieces, blackPieces, Pawnsb
+    allocMemBoard(); // allocate memory for the board
     // Constructeur (Couleur,nom_affiché, case)
     whitePieces[0] = new Rook(White, " \u2656 ", Square(0, 0));
     whitePieces[1] = new Knight(White, " \u2658 ", Square(0, 1));
@@ -225,19 +235,18 @@ Board::Board()
     blackPieces[6] = new Knight(Black, " \u265E ", Square(7, 6));
     blackPieces[7] = new Rook(Black, " \u265C ", Square(7, 7));
 
+    // save the kings positions
+    whiteKingPos = whitePieces[4]->get_position();
+    blackKingPos = blackPieces[4]->get_position();
+
     // allocation des Pawns
     for (unsigned char i(0); i < NBCOL; i++)
     {
         whitePawns[i] = new Pawn(White, " \u2659 ", Square(1, i));
         blackPawns[i] = new Pawn(Black, " \u265F ", Square(6, i));
     }
-    // Pose des pieces en position initiale
-    // pose des pieces White
+
     for (unsigned char i(0); i < NBCOL; i++)
-    // met à jour le tableau Board, à la case donnée par
-    // la position courante de la pièce obtenue avec
-    // whitePieces[i]->get_pos(),
-    // avec le pointeur vers la pièce (whitePieces[i])
     {
         putPiece(whitePieces[i], whitePieces[i]->get_position());
         putPiece(blackPieces[i], blackPieces[i]->get_position());
@@ -245,6 +254,7 @@ Board::Board()
         putPiece(blackPawns[i], blackPawns[i]->get_position());
     }
 }
+
 void Board::affiche()
 {
     string space5 = string(5, ' ');
@@ -1273,5 +1283,286 @@ int Board::promotion(int lign_orig, int col_orig, int lign_dest, int col_dest)
         cout << "Check !" << endl;
     }
 
+    return 1;
+}
+
+// int Board::isCheckmate(Color color)
+// {
+//     // check if the king is in check
+//     if (!isKingInCheck(color))
+//     {
+//         return 0;
+//     }
+
+//     // check if the king can move out of the check
+// }
+
+/**
+ * @brief  check if the king can castle
+ *
+ * @param color  the color of the king
+ * @return int 1 if the king can only castle short,
+ *             2 if the king can only castle long,
+ *             3 if the king can castle both ways,
+ *             0 if the king can't castle
+ */
+int Board::canCastle(Color color)
+{
+
+    int short_castle = 0;
+    int long_castle = 0;
+    if (color == White)
+    {
+        if (whiteKingCastled == 1)
+        {
+            return 0;
+        }
+        // short castling
+        if (board[0][4] != nullptr && board[0][7] != nullptr)
+        {
+            if (board[0][4]->get_name() == " \u2654 " &&
+                board[0][7]->get_name() == " \u2656 " &&
+                board[0][5] == nullptr && board[0][6] == nullptr &&
+                board[0][4]->get_hasMoved() == 0 && board[0][7]->get_hasMoved() == 0)
+            {
+                short_castle = 1;
+            }
+        }
+        // long castling
+        if (board[0][4] != nullptr && board[0][0] != nullptr)
+        {
+            if (board[0][4]->get_name() == " \u2654 " &&
+                board[0][0]->get_name() == " \u2656 " &&
+                board[0][1] == nullptr && board[0][2] == nullptr && board[0][3] == nullptr &&
+                board[0][4]->get_hasMoved() == 0 && board[0][0]->get_hasMoved() == 0)
+            {
+                long_castle = 2;
+            }
+        }
+        return short_castle + long_castle;
+    }
+    else
+    {
+        if (blackKingCastled == 1)
+        {
+            return 0;
+        }
+        // short castling
+        if (board[7][4] != nullptr && board[7][7] != nullptr)
+        {
+            if (board[7][4]->get_name() == " \u265A " &&
+                board[7][7]->get_name() == " \u265C " &&
+                board[7][5] == nullptr && board[7][6] == nullptr &&
+                board[7][4]->get_hasMoved() == 0 && board[7][7]->get_hasMoved() == 0)
+            {
+                short_castle = 1;
+            }
+        }
+        // long castling
+        if (board[7][4] != nullptr && board[7][0] != nullptr)
+        {
+            if (board[7][4]->get_name() == " \u265A " &&
+                board[7][0]->get_name() == " \u265C " &&
+                board[7][1] == nullptr && board[7][2] == nullptr && board[7][3] == nullptr &&
+                board[7][4]->get_hasMoved() == 0 && board[7][0]->get_hasMoved() == 0)
+            {
+                long_castle = 2;
+            }
+        }
+    }
+    return short_castle + long_castle;
+}
+
+int Board::shortCastling(Color color)
+{
+    // check if the king is in check
+    if (isKingInCheck(color))
+    {
+        cout << "You can't castle out of check" << endl;
+        return 0;
+    }
+    // check if the king can castle
+    if (canCastle(color) != 1 && canCastle(color) != 3)
+    {
+        cout << "You can't castle" << endl;
+        return 0;
+    }
+    if (color == White)
+    {
+        // move the rook
+        board[0][5] = board[0][7];
+        board[0][7] = nullptr;
+        board[0][5]->setPosition(0, 5);
+        // move the king
+        board[0][6] = board[0][4];
+        board[0][4] = nullptr;
+        board[0][6]->setPosition(0, 6);
+        whiteKingPos = {0, 6};
+        // set the hasMoved flag
+        board[0][5]->setHasMoved(1);
+        board[0][6]->setHasMoved(1);
+        // check if the king is in check
+        if (isKingInCheck(color))
+        {
+            cout << "You can't castle into check" << endl;
+            // move the king back
+            board[0][4] = board[0][6];
+            board[0][6] = nullptr;
+            board[0][4]->setPosition(0, 4);
+            whiteKingPos = {0, 4};
+            // move the rook back
+            board[0][7] = board[0][5];
+            board[0][5] = nullptr;
+            board[0][7]->setPosition(0, 7);
+            // set the hasMoved flag
+            board[0][4]->setHasMoved(0);
+            board[0][7]->setHasMoved(0);
+
+            return 0;
+        }
+        // save last move
+        lastMove.piece = board[whiteKingPos.get_lign()][whiteKingPos.get_column()];
+        lastMove.StartCol = 4;
+        lastMove.StartLign = 0;
+        lastMove.EndCol = 6;
+        lastMove.EndLign = 0;
+    }
+    else if (color == Black)
+    {
+        // move the rook
+        board[7][5] = board[7][7];
+        board[7][7] = nullptr;
+        board[7][5]->setPosition(7, 5);
+        // move the king
+        board[7][6] = board[7][4];
+        board[7][4] = nullptr;
+        board[7][6]->setPosition(7, 6);
+        blackKingPos = {7, 6};
+        // set the hasMoved flag
+        board[7][5]->setHasMoved(1);
+        board[7][6]->setHasMoved(1);
+        // check if the king is in check
+        if (isKingInCheck(color))
+        {
+            cout << "You can't castle into check" << endl;
+            // move the king back
+            board[7][4] = board[7][6];
+            board[7][6] = nullptr;
+            board[7][4]->setPosition(7, 4);
+            blackKingPos = {7, 4};
+            // move the rook back
+            board[7][7] = board[7][5];
+            board[7][5] = nullptr;
+            board[7][7]->setPosition(7, 7);
+            // set the hasMoved flag
+            board[7][4]->setHasMoved(0);
+            board[7][7]->setHasMoved(0);
+
+            return 0;
+        }
+        // save last move
+        lastMove.piece = board[blackKingPos.get_lign()][blackKingPos.get_column()];
+        lastMove.StartCol = 4;
+        lastMove.StartLign = 7;
+        lastMove.EndCol = 5;
+        lastMove.EndLign = 7;
+    }
+    return 1;
+}
+
+int Board::longCastling(Color color)
+{
+    // check if the king is in check
+    if (isKingInCheck(color))
+    {
+        cout << "You can't castle out of check" << endl;
+        return 0;
+    }
+    // check if the king can castle
+    if (canCastle(color) != 2 && canCastle(color) != 3)
+    {
+        cout << "You can't castle long " << endl;
+        return 0;
+    }
+
+    if (color == White)
+    {
+        // move the rook
+        board[0][3] = board[0][0];
+        board[0][0] = nullptr;
+        board[0][3]->setPosition(0, 3);
+        // move the king
+        board[0][2] = board[0][4];
+        board[0][4] = nullptr;
+        board[0][2]->setPosition(0, 2);
+        whiteKingPos = {0, 2};
+        // set the hasMoved flag
+        board[0][2]->setHasMoved(1);
+        board[0][3]->setHasMoved(1);
+        // check if the king is in check
+        if (isKingInCheck(color))
+        {
+            cout << "You can't castle into check" << endl;
+            // move the king back
+            board[0][4] = board[0][2];
+            board[0][2] = nullptr;
+            board[0][4]->setPosition(0, 4);
+            whiteKingPos = {0, 4};
+            // move the rook back
+            board[0][0] = board[0][3];
+            board[0][3] = nullptr;
+            board[0][0]->setPosition(0, 0);
+            // set the hasMoved flag
+            board[0][4]->setHasMoved(0);
+            board[0][0]->setHasMoved(0);
+
+            return 0;
+        }
+        // save last move
+        lastMove.piece = board[whiteKingPos.get_lign()][whiteKingPos.get_column()];
+        lastMove.StartCol = 4;
+        lastMove.StartLign = 0;
+        lastMove.EndCol = 3;
+        lastMove.EndLign = 0;
+    }
+    else if (color == Black)
+    {
+        // move the rook
+        board[7][3] = board[7][0];
+        board[7][0] = nullptr;
+        board[7][3]->setPosition(7, 3);
+        // move the king
+        board[7][2] = board[7][4];
+        board[7][4] = nullptr;
+        board[7][2]->setPosition(7, 2);
+        blackKingPos = {7, 2};
+        // set the hasMoved flag
+        board[7][2]->setHasMoved(1);
+        board[7][3]->setHasMoved(1);
+        // check if the king is in check
+        if (isKingInCheck(color))
+        {
+            cout << "You can't castle into check" << endl;
+            // move the king back
+            board[7][4] = board[7][2];
+            board[7][2] = nullptr;
+            board[7][4]->setPosition(7, 4);
+            // move the rook back
+            board[7][0] = board[7][3];
+            board[7][3] = nullptr;
+            board[7][0]->setPosition(7, 0);
+            // set the hasMoved flag
+            board[7][4]->setHasMoved(0);
+            board[7][0]->setHasMoved(0);
+
+            return 0;
+        }
+        // save last move
+        lastMove.piece = board[blackKingPos.get_lign()][blackKingPos.get_column()];
+        lastMove.StartCol = 4;
+        lastMove.StartLign = 7;
+        lastMove.EndCol = 3;
+        lastMove.EndLign = 7;
+    }
     return 1;
 }

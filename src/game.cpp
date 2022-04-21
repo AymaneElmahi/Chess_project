@@ -51,3 +51,36 @@ Color Game::getTurn()
 {
     return turn;
 }
+
+int Game::castle(string movement)
+{
+    // short castling
+    if (movement == "O-O")
+    {
+        if (board.shortCastling(turn) == 1)
+        { // change turn
+            if (turn == White)
+                turn = Black;
+            else
+                turn = White;
+        }
+        return 1;
+    }
+    // long castling
+    else if (movement == "O-O-O")
+    {
+        if (board.longCastling(turn) == 1)
+
+        { // change turn
+            if (turn == White)
+                turn = Black;
+            else
+                turn = White;
+        }
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}

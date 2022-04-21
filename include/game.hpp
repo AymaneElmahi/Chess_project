@@ -20,4 +20,6 @@ public:
     void affiche();
     Color getTurn();
     void setTurn(Color turn);
+
+    int castle(string movement);
 };

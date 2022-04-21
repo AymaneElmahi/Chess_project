@@ -52,6 +52,12 @@ public:
     int promotion(int lign_orig, int col_orig, int lign_dest, int col_dest);
     int destinationSquare(int col_orig, int lign_orig, int col_dest, int lign_dest);
 
+    int isCheckmate(Color color);
+    int canCastle(Color color);
+    int shortCastling(Color color);
+    int longCastling(Color color);
+    int KingInCheckAfterCastle(Color color, int CastlingType);
+
     Piece *getPiece(int lign, int col);
     Piece ***getBoard();
 
@@ -62,4 +68,8 @@ protected:
     Piece *whitePawns[8];
     Piece *blackPawns[8];
     struct lastMove lastMove;
+    int whiteKingCastled = 0;
+    int blackKingCastled = 0;
+    Square whiteKingPos = {0, 0};
+    Square blackKingPos = {0, 0};
 };
