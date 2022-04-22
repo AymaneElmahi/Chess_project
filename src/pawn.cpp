@@ -6,12 +6,12 @@ int Pawn::isLegalMove(int StartCol, int StartLign, int EndCol, int EndLign)
 
     if (color == White)
     {
-        if (EndLign <= StartLign)
+        if (EndLign <= StartLign || EndCol > StartCol + 1 || EndCol < StartCol - 1)
             return 0;
     }
     else
     {
-        if (EndLign >= StartLign)
+        if (EndLign >= StartLign || EndCol > StartCol + 1 || EndCol < StartCol - 1)
             return 0;
     }
     // check if it's the first move
@@ -20,7 +20,6 @@ int Pawn::isLegalMove(int StartCol, int StartLign, int EndCol, int EndLign)
         // check if the pawn is moving 2 squares
         if (abs(StartLign - EndLign) == 2)
         {
-            cout << "Pawn can only move 2 squares at the beginning" << endl;
             return 0;
         }
     }

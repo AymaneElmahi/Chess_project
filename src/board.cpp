@@ -515,7 +515,7 @@ int Board::isPathClear(int col_orig, int lign_orig, int col_dest, int lign_dest)
         return isPathClearQueen(col_orig, lign_orig, col_dest, lign_dest);
     }
     // check if the piece is a pawn
-    else if (board[lign_orig][col_orig]->get_name() == " \u2659 " || board[lign_orig][col_orig]->get_name() == " \u265A ")
+    else if (board[lign_orig][col_orig]->get_name() == " \u2659 " || board[lign_orig][col_orig]->get_name() == " \u265F ")
     {
         return isPathClearPawn(col_orig, lign_orig, col_dest, lign_dest);
     }
@@ -1563,6 +1563,85 @@ int Board::longCastling(Color color)
         lastMove.StartLign = 7;
         lastMove.EndCol = 3;
         lastMove.EndLign = 7;
+    }
+    return 1;
+}
+
+int Board::isCheckmate(Color turn)
+{
+    int kingLign = 0, kingCol = 0;
+    // check if the king is in check
+    if (!isKingInCheck(turn))
+    {
+        return 0;
+    }
+
+    if (turn == White)
+    {
+        kingLign = whiteKingPos.get_lign();
+        kingCol = whiteKingPos.get_column();
+    }
+    else if (turn == Black)
+    {
+        kingLign = blackKingPos.get_lign();
+        kingCol = blackKingPos.get_column();
+    }
+    // check if the king can move out of check
+    for (int i = -1; i < 2; i++)
+    {
+        for (int j = -1; j < 2; j++)
+        {
+            if (kingLign + i < 0 || kingLign + i > 7 || kingCol + j < 0 || kingCol + j > 7)
+            {
+                continue;
+            }
+            if (board[kingLign + i][kingCol + j] != nullptr)
+            {
+                if (board[kingLign + i][kingCol + j]->get_color() != turn)
+                {
+                    if (!kingWillBeInCheckAfterMove(kingLign, kingCol, kingLign + i, kingCol + j))
+                    {
+                        return 0;
+                    }
+                }
+            }
+            else if (!kingWillBeInCheckAfterMove(kingLign, kingCol, kingLign + i, kingCol + j))
+            {
+                return 0;
+            }
+        }
+    }
+
+    // check if a piece can stop the check
+    for (int i = 0; i < 8; i++)
+    {
+        for (int j = 0; j < 8; j++)
+        {
+            if (board[i][j] != nullptr)
+            {
+                if (board[i][j]->get_color() == turn)
+                {
+                    for (int k = 0; k < 8; k++)
+                    {
+                        for (int l = 0; l < 8; l++)
+                        {
+                            if (board[k][l] != nullptr && board[k][l]->get_color() != turn)
+                            {
+                                if (board[i][j]->canMove(l, k) != 0 && isPathClear(j, i, l, k) == 1)
+                                {
+                                    if (!kingWillBeInCheckAfterMove(i, j, k, l))
+                                    {
+                                        cout << board[i][j]->get_name() << i << j << " can stop the check" << endl;
+                                        cout << k << l << endl;
+                                        return 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     return 1;
 }

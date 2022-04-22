@@ -40,6 +40,12 @@ int main()
                 }
             }
             castled = 0;
+            // check if it's a checkmate
+            if (myGame.getBoard().isCheckmate(myGame.getTurn()))
+            {
+                cout << "Checkmate !" << endl;
+                stop = true;
+            }
         }
         else
             stop = true;

@@ -49,6 +49,13 @@ Piece *Piece::clone()
     return new Piece(color, name, position);
 }
 
+/**
+ * @brief check if the piece can move to the square
+ *
+ * @param EndCol
+ * @param EndLign
+ * @return int
+ */
 int Piece::canMove(int EndCol, int EndLign)
 {
     return isLegalMove(position.get_column(), position.get_lign(), EndCol, EndLign);

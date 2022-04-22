@@ -52,11 +52,12 @@ public:
     int promotion(int lign_orig, int col_orig, int lign_dest, int col_dest);
     int destinationSquare(int col_orig, int lign_orig, int col_dest, int lign_dest);
 
-    int isCheckmate(Color color);
     int canCastle(Color color);
     int shortCastling(Color color);
     int longCastling(Color color);
     int KingInCheckAfterCastle(Color color, int CastlingType);
+
+    int isCheckmate(Color color);
 
     Piece *getPiece(int lign, int col);
     Piece ***getBoard();
@@ -72,4 +73,5 @@ protected:
     int blackKingCastled = 0;
     Square whiteKingPos = {0, 0};
     Square blackKingPos = {0, 0};
+    int checkmate = 0;
 };
