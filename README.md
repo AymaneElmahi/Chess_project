@@ -61,20 +61,14 @@ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 
-- app class
-- command line arguments from `"f:m:n:vqhVL"` (`./bin/echecs --help` to learn more)
-- released a compatibility mode for gnu++17 (c++17)
-- makefile does not use g++11 explicitely
-- github workflow for security checks
-- added signal handling and async input
-- minor improvement of the evaluation function
-- added basic endgame detection and alternate king map
-- implemented pawn promotion for additional target pieces (ask for user input)
-- as user is requested an additional input, cpu can only promote to queen as of now (there could still be bugs)
-- async input reduced, sigint sent by user does not always close the app
-- added simple display tweak, user can switch filling up white pieces for display
-- add pop command to go to the previous board if available (not recoverable)
-- global state of the program is registered
+| dev version used |
+| ---------------- |
+| g++-9.4.0        |
+| -std=c++11       |
+| valgrind-3.15.0  |
+| -Wall -W -Werror |
+| -g -O2 -pedantic |
+| -Ofast           |
 
 </details>
 
