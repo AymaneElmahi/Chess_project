@@ -61,33 +61,6 @@ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 
-## Changelog
-
-Please refer to the [changelog.md](changelog.md) file for the full history.
-
-```mermaid
-gantt
-    title C++ Major
-    dateFormat  YYYY-MM-DD
-    section Basic chess
-    base classes            : 2022-03-27, 1d
-    copy/clone constructors : 1d
-    section Moves
-    moves for Pawn : 2022-03-28, 2d
-    moves for all  : 2022-03-29, 1d
-    section CPU
-    get best move    : 2022-03-30, 2d
-    get worst move   : 1d
-    basic evaluation : 2022-04-09, 2d
-    use of threads   : 2022-04-11, 5d
-    section command line UI
-    base board display : 2022-03-27, 1d
-    more commands      : 2022-04-01, 1d
-```
-
-<details>
-    <summary> v0.1.0 : first release package version (click here to expand) </summary>
-
 - app class
 - command line arguments from `"f:m:n:vqhVL"` (`./bin/echecs --help` to learn more)
 - released a compatibility mode for gnu++17 (c++17)
