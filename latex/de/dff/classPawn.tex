@@ -1,0 +1,93 @@
+\hypertarget{classPawn}{}\doxysection{Pawn Class Reference}
+\label{classPawn}\index{Pawn@{Pawn}}
+
+
+{\ttfamily \#include $<$pawn.\+hpp$>$}
+
+
+
+Inheritance diagram for Pawn\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=123pt]{d6/d1c/classPawn__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Pawn\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{d6/df4/classPawn__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPawn_a79fe25cd0666f1ad782574c098157313}{Pawn}} (\mbox{\hyperlink{color_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}} \mbox{\hyperlink{classPiece_a4cf5b29a9e13dcb93b616b11160c2abc}{color}}, string \mbox{\hyperlink{classPiece_a4cfa0ffac54632f92ac06f50b72e9335}{name}}, \mbox{\hyperlink{classSquare}{Square}} \mbox{\hyperlink{classPiece_a3bfe047bbab090fa920f2ed4d8453a59}{position}})
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classPawn}{Pawn}} object. \end{DoxyCompactList}\item 
+virtual int \mbox{\hyperlink{classPawn_a565869b0a29242ec40a894915e50cb1f}{is\+Legal\+Move}} (int Start\+Col, int Start\+Lign, int End\+Col, int End\+Lign)
+\begin{DoxyCompactList}\small\item\em check if the movement is legal for the pawn \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPawn_a79fe25cd0666f1ad782574c098157313}\label{classPawn_a79fe25cd0666f1ad782574c098157313}} 
+\index{Pawn@{Pawn}!Pawn@{Pawn}}
+\index{Pawn@{Pawn}!Pawn@{Pawn}}
+\doxysubsubsection{\texorpdfstring{Pawn()}{Pawn()}}
+{\footnotesize\ttfamily Pawn\+::\+Pawn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{color_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}}}]{color,  }\item[{string}]{name,  }\item[{\mbox{\hyperlink{classSquare}{Square}}}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new \mbox{\hyperlink{classPawn}{Pawn}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & \\
+\hline
+{\em name} & \\
+\hline
+{\em position} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPawn_a565869b0a29242ec40a894915e50cb1f}\label{classPawn_a565869b0a29242ec40a894915e50cb1f}} 
+\index{Pawn@{Pawn}!isLegalMove@{isLegalMove}}
+\index{isLegalMove@{isLegalMove}!Pawn@{Pawn}}
+\doxysubsubsection{\texorpdfstring{isLegalMove()}{isLegalMove()}}
+{\footnotesize\ttfamily int Pawn\+::is\+Legal\+Move (\begin{DoxyParamCaption}\item[{int}]{Start\+Col,  }\item[{int}]{Start\+Lign,  }\item[{int}]{End\+Col,  }\item[{int}]{End\+Lign }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+check if the movement is legal for the pawn 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Start\+Col} & \\
+\hline
+{\em Start\+Lign} & \\
+\hline
+{\em End\+Col} & \\
+\hline
+{\em End\+Lign} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classPiece_a3a3d619a73b2413589fd54dd4780431d}{Piece}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{pawn_8hpp}{pawn.\+hpp}}\item 
+src/\mbox{\hyperlink{pawn_8cpp}{pawn.\+cpp}}\end{DoxyCompactItemize}

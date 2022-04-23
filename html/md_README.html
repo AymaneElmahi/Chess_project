@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: Chess_project</title>
+<title>Chess Game in C++: Chess Game in C++</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">Chess Game in C++
    </div>
+   <div id="projectbrief">ThisisachessgameinC++.Itisasimplegamewithafewfeatures.</div>
   </td>
  </tr>
  </tbody>
@@ -62,10 +63,70 @@ $(function() {
 </div><!-- top -->
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">Chess_project </div>  </div>
+<div class="title">Chess <a class="el" href="classGame.html">Game</a> in C++ </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Chess Project in Terminal for Cpp Class </p>
+<div class="textblock"><p>School project</p>
+<ol type="1">
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#How-to-play">How to play ?</a></li>
+<li><a href="#License">License</a></li>
+<li><a href="#bugs--todo">Bugs &amp; TODO</a></li>
+</ol>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Introduction</h1>
+<p>This is a chess game in C++. It is a simple game with a few features. It is not a complete chess game, but it is a good practice for learning OPP. Is it possible to make a complete chess game? I don't know. I think it is possible. I will try someday to make a complete chess game in C++.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+How to play ?</h1>
+<p>Compile the code with</p>
+<div class="fragment"><div class="line">make</div>
+</div><!-- fragment --><p>then run the game with</p>
+<div class="fragment"><div class="line">make run</div>
+</div><!-- fragment --><p>The game is running in a terminal. You can play the game with the keyboard. The program will ask the first player to enter a move (e.g. <code>e2e4</code>). The program will then display the board and ask the second player to enter a move. It alternates between the two players.</p>
+<p>If the move is not valid, the program will ask the player to enter a new move.</p>
+<p>At the end, the program will display the final position of the board in canonical notation.</p>
+<h1><a class="anchor" id="autotoc_md3"></a>
+License</h1>
+<p>This Chess engine is licensed under the [GPL-3.0](LICENSE) license. Please see the [license](LICENSE) file for more details.</p>
+<p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
+<ul>
+<li>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
+<li>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</li>
+<li>Neither the name of the chess-cli authors nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.</li>
+</ul>
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">dev version used  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">g++-9.4.0  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">-std=c++11  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">valgrind-3.15.0  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">-Wall -W -Werror  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">-g -O2 -pedantic  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">-Ofast  </td></tr>
+</table>
+<p>&lt;/details&gt;</p>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Bugs &amp; TODO</h1>
+<p>Bugs (final correction version)</p>
+<ul>
+<li>~~ Some valgrind errors ~~</li>
+</ul>
+<p>TODO</p>
+<ul>
+<li>Implement the draw by threefold repetition rule</li>
+<li>Implement the draw by insufficient material rule</li>
+<li>Implement the draw by 50 move rule</li>
+<li>Implement an engine that can play against a human player</li>
+<li>Add an oppening book</li>
+<li>Add an endgame detection </li>
+</ul>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->

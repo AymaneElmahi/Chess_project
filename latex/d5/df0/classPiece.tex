@@ -1,0 +1,299 @@
+\hypertarget{classPiece}{}\doxysection{Piece Class Reference}
+\label{classPiece}\index{Piece@{Piece}}
+
+
+{\ttfamily \#include $<$piece.\+hpp$>$}
+
+
+
+Inheritance diagram for Piece\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/d18/classPiece__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Piece\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{de/df9/classPiece__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPiece_ac57de5803bbad829b143bc7268267dc1}{Piece}} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classPiece}{Piece}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPiece_abeea0920982a66f5e499892bfe84cc30}{Piece}} (\mbox{\hyperlink{color_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}} \mbox{\hyperlink{classPiece_a4cf5b29a9e13dcb93b616b11160c2abc}{color}}, string \mbox{\hyperlink{classPiece_a4cfa0ffac54632f92ac06f50b72e9335}{name}}, \mbox{\hyperlink{classSquare}{Square}} \mbox{\hyperlink{classPiece_a3bfe047bbab090fa920f2ed4d8453a59}{position}})
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classPiece}{Piece}} object. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPiece_a1fa10b0883b6cd5f0862216a4c202e36}{$\sim$\+Piece}} ()
+\begin{DoxyCompactList}\small\item\em Destroy the \mbox{\hyperlink{classPiece}{Piece}} object. \end{DoxyCompactList}\item 
+virtual int \mbox{\hyperlink{classPiece_a3a3d619a73b2413589fd54dd4780431d}{is\+Legal\+Move}} (int Start\+Col, int Start\+Lign, int End\+Col, int End\+Lign)
+\begin{DoxyCompactList}\small\item\em check if the movement is legal for the piece \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPiece_acc37a460c2869e7d3a5d71aa96c42480}{set\+Position}} (int Col, int Lign)
+\begin{DoxyCompactList}\small\item\em Set the Position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPiece_a9d12d5d2662f161420fb53c022011170}{set\+Has\+Moved}} (int \mbox{\hyperlink{classPiece_a2c34f5f494367e7605b924a32eaff01e}{has\+Moved}})
+\begin{DoxyCompactList}\small\item\em Set the Has Moved flag. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{color_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}} \mbox{\hyperlink{classPiece_a96db467dc2959adee9fb03e5ccc10683}{get\+\_\+color}} ()
+\begin{DoxyCompactList}\small\item\em Get the color of the piece. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classPiece_a5922765886f914c1b388c55e4228108f}{get\+\_\+name}} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the piece. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSquare}{Square}} \mbox{\hyperlink{classPiece_a30e6ae9b702c6eff7892a1beb7b3de60}{get\+\_\+position}} ()
+\begin{DoxyCompactList}\small\item\em Get the position of the piece. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classPiece_adfa61b7b3d16c9f295d5e70ec23a323a}{get\+\_\+has\+Moved}} ()
+\begin{DoxyCompactList}\small\item\em Get the has\+Moved flag. \end{DoxyCompactList}\item 
+virtual int \mbox{\hyperlink{classPiece_ab1789114bd41c964d0617eb8dccb20ac}{can\+Move}} (int End\+Col, int End\+Lign)
+\begin{DoxyCompactList}\small\item\em check if the piece can move to the square \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPiece_a2cb195ab09042354c6694e1899143d0a}{affiche}} ()
+\begin{DoxyCompactList}\small\item\em print the piece \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPiece}{Piece}} $\ast$ \mbox{\hyperlink{classPiece_abf166fda47f70366dfaa8cf311d74153}{clone}} ()
+\begin{DoxyCompactList}\small\item\em clone the piece \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{color_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}} \mbox{\hyperlink{classPiece_a4cf5b29a9e13dcb93b616b11160c2abc}{color}}
+\item 
+string \mbox{\hyperlink{classPiece_a4cfa0ffac54632f92ac06f50b72e9335}{name}}
+\item 
+\mbox{\hyperlink{classSquare}{Square}} \mbox{\hyperlink{classPiece_a3bfe047bbab090fa920f2ed4d8453a59}{position}}
+\item 
+int \mbox{\hyperlink{classPiece_a2c34f5f494367e7605b924a32eaff01e}{has\+Moved}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPiece_ac57de5803bbad829b143bc7268267dc1}\label{classPiece_ac57de5803bbad829b143bc7268267dc1}} 
+\index{Piece@{Piece}!Piece@{Piece}}
+\index{Piece@{Piece}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{Piece()}{Piece()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Piece\+::\+Piece (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{classPiece}{Piece}} object. 
+
+\mbox{\Hypertarget{classPiece_abeea0920982a66f5e499892bfe84cc30}\label{classPiece_abeea0920982a66f5e499892bfe84cc30}} 
+\index{Piece@{Piece}!Piece@{Piece}}
+\index{Piece@{Piece}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{Piece()}{Piece()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Piece\+::\+Piece (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{color_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}}}]{color,  }\item[{string}]{name,  }\item[{\mbox{\hyperlink{classSquare}{Square}}}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new \mbox{\hyperlink{classPiece}{Piece}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & \\
+\hline
+{\em name} & \\
+\hline
+{\em position} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPiece_a1fa10b0883b6cd5f0862216a4c202e36}\label{classPiece_a1fa10b0883b6cd5f0862216a4c202e36}} 
+\index{Piece@{Piece}!````~Piece@{$\sim$Piece}}
+\index{````~Piece@{$\sim$Piece}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{$\sim$Piece()}{~Piece()}}
+{\footnotesize\ttfamily virtual Piece\+::$\sim$\+Piece (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Destroy the \mbox{\hyperlink{classPiece}{Piece}} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPiece_a2cb195ab09042354c6694e1899143d0a}\label{classPiece_a2cb195ab09042354c6694e1899143d0a}} 
+\index{Piece@{Piece}!affiche@{affiche}}
+\index{affiche@{affiche}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{affiche()}{affiche()}}
+{\footnotesize\ttfamily void Piece\+::affiche (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+print the piece 
+
+\mbox{\Hypertarget{classPiece_ab1789114bd41c964d0617eb8dccb20ac}\label{classPiece_ab1789114bd41c964d0617eb8dccb20ac}} 
+\index{Piece@{Piece}!canMove@{canMove}}
+\index{canMove@{canMove}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{canMove()}{canMove()}}
+{\footnotesize\ttfamily int Piece\+::can\+Move (\begin{DoxyParamCaption}\item[{int}]{End\+Col,  }\item[{int}]{End\+Lign }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+check if the piece can move to the square 
+
+
+\begin{DoxyParams}{Parameters}
+{\em End\+Col} & \\
+\hline
+{\em End\+Lign} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPiece_abf166fda47f70366dfaa8cf311d74153}\label{classPiece_abf166fda47f70366dfaa8cf311d74153}} 
+\index{Piece@{Piece}!clone@{clone}}
+\index{clone@{clone}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPiece}{Piece}} $\ast$ Piece\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+clone the piece 
+
+\begin{DoxyReturn}{Returns}
+Piece$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPiece_a96db467dc2959adee9fb03e5ccc10683}\label{classPiece_a96db467dc2959adee9fb03e5ccc10683}} 
+\index{Piece@{Piece}!get\_color@{get\_color}}
+\index{get\_color@{get\_color}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{get\_color()}{get\_color()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{color_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}} Piece\+::get\+\_\+color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the color of the piece. 
+
+\begin{DoxyReturn}{Returns}
+Color 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPiece_adfa61b7b3d16c9f295d5e70ec23a323a}\label{classPiece_adfa61b7b3d16c9f295d5e70ec23a323a}} 
+\index{Piece@{Piece}!get\_hasMoved@{get\_hasMoved}}
+\index{get\_hasMoved@{get\_hasMoved}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{get\_hasMoved()}{get\_hasMoved()}}
+{\footnotesize\ttfamily int Piece\+::get\+\_\+has\+Moved (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the has\+Moved flag. 
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPiece_a5922765886f914c1b388c55e4228108f}\label{classPiece_a5922765886f914c1b388c55e4228108f}} 
+\index{Piece@{Piece}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily string Piece\+::get\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the name of the piece. 
+
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPiece_a30e6ae9b702c6eff7892a1beb7b3de60}\label{classPiece_a30e6ae9b702c6eff7892a1beb7b3de60}} 
+\index{Piece@{Piece}!get\_position@{get\_position}}
+\index{get\_position@{get\_position}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{get\_position()}{get\_position()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSquare}{Square}} Piece\+::get\+\_\+position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the position of the piece. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classSquare}{Square}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPiece_a3a3d619a73b2413589fd54dd4780431d}\label{classPiece_a3a3d619a73b2413589fd54dd4780431d}} 
+\index{Piece@{Piece}!isLegalMove@{isLegalMove}}
+\index{isLegalMove@{isLegalMove}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{isLegalMove()}{isLegalMove()}}
+{\footnotesize\ttfamily int Piece\+::is\+Legal\+Move (\begin{DoxyParamCaption}\item[{int}]{Start\+Col,  }\item[{int}]{Start\+Lign,  }\item[{int}]{End\+Col,  }\item[{int}]{End\+Lign }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+check if the movement is legal for the piece 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Start\+Col} & \\
+\hline
+{\em Start\+Lign} & \\
+\hline
+{\em End\+Col} & \\
+\hline
+{\em End\+Lign} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classKing_a2198608e7c3821701e63ec68b4a6f449}{King}}, \mbox{\hyperlink{classPawn_a565869b0a29242ec40a894915e50cb1f}{Pawn}}, \mbox{\hyperlink{classBishop_a856c3e7ec67ff8caff3844c8f218b59c}{Bishop}}, \mbox{\hyperlink{classKnight_ae9703dceabea7997ebc1e3dc09994b3e}{Knight}}, \mbox{\hyperlink{classQueen_af39245edcffcfc632b0965eb54eda1e2}{Queen}}, and \mbox{\hyperlink{classRook_a910ba0926aaa376ba826b49c452a89dd}{Rook}}.
+
+\mbox{\Hypertarget{classPiece_a9d12d5d2662f161420fb53c022011170}\label{classPiece_a9d12d5d2662f161420fb53c022011170}} 
+\index{Piece@{Piece}!setHasMoved@{setHasMoved}}
+\index{setHasMoved@{setHasMoved}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{setHasMoved()}{setHasMoved()}}
+{\footnotesize\ttfamily void Piece\+::set\+Has\+Moved (\begin{DoxyParamCaption}\item[{int}]{has\+Moved }\end{DoxyParamCaption})}
+
+
+
+Set the Has Moved flag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em has\+Moved} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPiece_acc37a460c2869e7d3a5d71aa96c42480}\label{classPiece_acc37a460c2869e7d3a5d71aa96c42480}} 
+\index{Piece@{Piece}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}}
+{\footnotesize\ttfamily void Piece\+::set\+Position (\begin{DoxyParamCaption}\item[{int}]{Col,  }\item[{int}]{Lign }\end{DoxyParamCaption})}
+
+
+
+Set the Position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Col} & \\
+\hline
+{\em Lign} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classPiece_a4cf5b29a9e13dcb93b616b11160c2abc}\label{classPiece_a4cf5b29a9e13dcb93b616b11160c2abc}} 
+\index{Piece@{Piece}!color@{color}}
+\index{color@{color}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{color}{color}}
+{\footnotesize\ttfamily \mbox{\hyperlink{color_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}} Piece\+::color\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classPiece_a2c34f5f494367e7605b924a32eaff01e}\label{classPiece_a2c34f5f494367e7605b924a32eaff01e}} 
+\index{Piece@{Piece}!hasMoved@{hasMoved}}
+\index{hasMoved@{hasMoved}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{hasMoved}{hasMoved}}
+{\footnotesize\ttfamily int Piece\+::has\+Moved = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classPiece_a4cfa0ffac54632f92ac06f50b72e9335}\label{classPiece_a4cfa0ffac54632f92ac06f50b72e9335}} 
+\index{Piece@{Piece}!name@{name}}
+\index{name@{name}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string Piece\+::name\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classPiece_a3bfe047bbab090fa920f2ed4d8453a59}\label{classPiece_a3bfe047bbab090fa920f2ed4d8453a59}} 
+\index{Piece@{Piece}!position@{position}}
+\index{position@{position}!Piece@{Piece}}
+\doxysubsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSquare}{Square}} Piece\+::position\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{piece_8hpp}{piece.\+hpp}}\item 
+src/\mbox{\hyperlink{piece_8cpp}{piece.\+cpp}}\end{DoxyCompactItemize}

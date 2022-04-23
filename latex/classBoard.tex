@@ -1,0 +1,738 @@
+\hypertarget{classBoard}{}\doxysection{Board Class Reference}
+\label{classBoard}\index{Board@{Board}}
+
+
+Collaboration diagram for Board\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{classBoard__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBoard_a9ee491d4fea680cf69b033374a9fdfcb}{Board}} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classBoard}{Board}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBoard_abb545f33ed68649c62889fdc42894274}{affiche}} ()
+\begin{DoxyCompactList}\small\item\em display the board \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBoard_af926195708cad11e356b60fb7fc7d245}{alloc\+Mem\+Board}} ()
+\begin{DoxyCompactList}\small\item\em allocate memory for the board \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBoard_a61b9992d1090d9ab82c1b64aba97e07a}{put\+Piece}} (\mbox{\hyperlink{classPiece}{Piece}} $\ast$piece, \mbox{\hyperlink{classSquare}{Square}} starting\+Pos)
+\begin{DoxyCompactList}\small\item\em put the piece on the board \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_ab81d52519382fa42432b0114a9aeff3f}{move}} (int col\+\_\+orig, int lign\+\_\+orig, int col\+\_\+dest, int lign\+\_\+dest)
+\begin{DoxyCompactList}\small\item\em move the piece on the board \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_a168fcdecc632a7329f92e9cbe946a73e}{is\+Path\+Clear}} (int col\+\_\+orig, int lign\+\_\+orig, int col\+\_\+dest, int lign\+\_\+dest)
+\begin{DoxyCompactList}\small\item\em check if the path is clear \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_a67a9d8572cf333647d1fb37c7a3f4970}{is\+Path\+Clear\+Bishop}} (int col\+\_\+orig, int lign\+\_\+orig, int col\+\_\+dest, int lign\+\_\+dest)
+\begin{DoxyCompactList}\small\item\em check if the path is clear for the bishop \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_a477c8287ecbfc33398b566621e6cc903}{is\+Path\+Clear\+Rook}} (int col\+\_\+orig, int lign\+\_\+orig, int col\+\_\+dest, int lign\+\_\+dest)
+\begin{DoxyCompactList}\small\item\em check if the path is clear for the rook \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_aee5df536ff667e908c9c609bb65e26e2}{is\+Path\+Clear\+Queen}} (int col\+\_\+orig, int lign\+\_\+orig, int col\+\_\+dest, int lign\+\_\+dest)
+\begin{DoxyCompactList}\small\item\em check if the path is clear from the queen \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_ac401d95da1d56bfc092b132a946bd6eb}{is\+Path\+Clear\+Pawn}} (int col\+\_\+orig, int lign\+\_\+orig, int col\+\_\+dest, int lign\+\_\+dest)
+\begin{DoxyCompactList}\small\item\em check if the path is clear for the pawn \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_aa777f8fcaa82158fc74dd7b27e903704}{is\+Path\+Clear\+Pawn\+Black}} (int col\+\_\+orig, int lign\+\_\+orig, int col\+\_\+dest, int lign\+\_\+dest)
+\begin{DoxyCompactList}\small\item\em check if the path is clear for a black pawn \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_ae2b6a05c460347b9283b1f60b540d4df}{is\+Path\+Clear\+Pawn\+White}} (int col\+\_\+orig, int lign\+\_\+orig, int col\+\_\+dest, int lign\+\_\+dest)
+\begin{DoxyCompactList}\small\item\em check if the path is clear for a white pawn \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_a79c0bfdd976c300284e141cd0173f2bd}{pawn\+Is\+Taking}} (int col\+\_\+orig, int lign\+\_\+orig, int col\+\_\+dest, int lign\+\_\+dest)
+\begin{DoxyCompactList}\small\item\em check if the pawn can take \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_a8b8ad0d770b8709e4aa46e78013df7fb}{is\+En\+Passant}} (int col\+\_\+orig, int lign\+\_\+orig, int col\+\_\+dest, int lign\+\_\+dest)
+\begin{DoxyCompactList}\small\item\em check if en passant is possible \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_a91541d9c14fdd422be86b9a0ac42ac02}{is\+Attacking\+King}} (\mbox{\hyperlink{classPiece}{Piece}} $\ast$piece)
+\begin{DoxyCompactList}\small\item\em check if the piece is attacking the opposite king \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_a4f731a90ed9d4f088176782a12c78110}{is\+King\+In\+Check}} (Color color)
+\begin{DoxyCompactList}\small\item\em check if the king is in check \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_a62c20852983e64b3f97a9d0f0be88c24}{king\+Will\+Be\+In\+Check\+After\+Move}} (int lign\+\_\+orig, int col\+\_\+orig, int lign\+\_\+dest, int col\+\_\+dest)
+\begin{DoxyCompactList}\small\item\em check if the king will be in check after the move \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_a9cc5084fb5d4c05e374196ad1c6a2885}{king\+In\+Check\+While\+Castling}} (Color color, int castling\+Type)
+\begin{DoxyCompactList}\small\item\em check if the king will be in check while castling \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_a5c141511d31888cdf6499ac25f131400}{is\+Promotion}} (int lign\+\_\+orig, int col\+\_\+orig, int lign\+\_\+dest, int col\+\_\+dest)
+\begin{DoxyCompactList}\small\item\em check if the move is a promotion \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_a8b81d732fc80c0e82535bcd7283e16f6}{promotion}} (int lign\+\_\+orig, int col\+\_\+orig, int lign\+\_\+dest, int col\+\_\+dest)
+\begin{DoxyCompactList}\small\item\em promote the pawn \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_a1f72018bbfbb6617b1ff7b38fc1262ad}{destination\+Square}} (int col\+\_\+orig, int lign\+\_\+orig, int col\+\_\+dest, int lign\+\_\+dest)
+\begin{DoxyCompactList}\small\item\em check if the destination square is accessible \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_a3e18dffdb6187ff077be202e00c73c50}{can\+Castle}} (Color color)
+\begin{DoxyCompactList}\small\item\em check if the king can castle \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_adf8704d6110bdd2ada210c3424e6be5f}{short\+Castling}} (Color color)
+\begin{DoxyCompactList}\small\item\em short castle \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_a8dc3c6bcf0694d8a5139233d3dbeb9f6}{long\+Castling}} (Color color)
+\begin{DoxyCompactList}\small\item\em long castle \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_a7c7f598a7780f157e6c0edd6e5decd0c}{King\+In\+Check\+After\+Castle}} (Color color, int Castling\+Type)
+\begin{DoxyCompactList}\small\item\em check if the king will be in check after castling \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_afe2dccde6d56cdb3e264ce68c6a0c275}{is\+Checkmate}} (Color color)
+\begin{DoxyCompactList}\small\item\em check if it\textquotesingle{}s checkmate \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_a4d50fa5e89e53fdf03260f68ff6b5102}{is\+Stalemate}} (Color color)
+\begin{DoxyCompactList}\small\item\em check if it\textquotesingle{}s stalemate \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPiece}{Piece}} $\ast$ \mbox{\hyperlink{classBoard_a179016e1ac8dd212a4eb36245c0179a3}{get\+Piece}} (int lign, int col)
+\begin{DoxyCompactList}\small\item\em Get the \mbox{\hyperlink{classPiece}{Piece}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPiece}{Piece}} $\ast$$\ast$$\ast$ \mbox{\hyperlink{classBoard_a85b46ebad772ac0b72231cc3ef07fda3}{get\+Board}} ()
+\begin{DoxyCompactList}\small\item\em Get the \mbox{\hyperlink{classBoard}{Board}} object. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classBoard_a33f4f76d3a052c7f4e43f5d8e9a32458}{pgn\+\_\+piece\+\_\+name}} (string const name, bool view\+\_\+pawn, bool view\+\_\+color) const
+\begin{DoxyCompactList}\small\item\em get the pgn of the piece \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classBoard_a6a6adc3ab52fcb99bad35e02a948ab31}{canonical\+Position}} ()
+\begin{DoxyCompactList}\small\item\em get the canonical position of the board \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classBoard_aa4af6d99473de7fc9c0d238c6cf765b5}\label{classBoard_aa4af6d99473de7fc9c0d238c6cf765b5}} 
+\mbox{\hyperlink{classPiece}{Piece}} $\ast$ {\bfseries board} \mbox{[}8\mbox{]}\mbox{[}8\mbox{]}
+\item 
+\mbox{\Hypertarget{classBoard_a7388144a466ccea7812093f34be939fd}\label{classBoard_a7388144a466ccea7812093f34be939fd}} 
+\mbox{\hyperlink{classPiece}{Piece}} $\ast$ {\bfseries white\+Pieces} \mbox{[}8\mbox{]}
+\item 
+\mbox{\Hypertarget{classBoard_a882c90fea63238c5b3d05070025b000b}\label{classBoard_a882c90fea63238c5b3d05070025b000b}} 
+\mbox{\hyperlink{classPiece}{Piece}} $\ast$ {\bfseries black\+Pieces} \mbox{[}8\mbox{]}
+\item 
+\mbox{\Hypertarget{classBoard_a28f90e52dde2cadf02c28fb2fa2d6024}\label{classBoard_a28f90e52dde2cadf02c28fb2fa2d6024}} 
+\mbox{\hyperlink{classPiece}{Piece}} $\ast$ {\bfseries white\+Pawns} \mbox{[}8\mbox{]}
+\item 
+\mbox{\Hypertarget{classBoard_a99bdc5bfbcf689494d82d2056e62eae9}\label{classBoard_a99bdc5bfbcf689494d82d2056e62eae9}} 
+\mbox{\hyperlink{classPiece}{Piece}} $\ast$ {\bfseries black\+Pawns} \mbox{[}8\mbox{]}
+\item 
+\mbox{\Hypertarget{classBoard_a32ad2c851ad68b50b4418227013c10b1}\label{classBoard_a32ad2c851ad68b50b4418227013c10b1}} 
+struct \mbox{\hyperlink{structlastMove}{last\+Move}} {\bfseries last\+Move}
+\item 
+\mbox{\Hypertarget{classBoard_ae777c449cd68dab9d31c43c6001ab579}\label{classBoard_ae777c449cd68dab9d31c43c6001ab579}} 
+int {\bfseries white\+King\+Castled} = 0
+\item 
+\mbox{\Hypertarget{classBoard_a7aabaea741d4e540ffc444e3ba799269}\label{classBoard_a7aabaea741d4e540ffc444e3ba799269}} 
+int {\bfseries black\+King\+Castled} = 0
+\item 
+\mbox{\Hypertarget{classBoard_a5fe7cd41e26870d0f943bb1b7a1dc25c}\label{classBoard_a5fe7cd41e26870d0f943bb1b7a1dc25c}} 
+\mbox{\hyperlink{classSquare}{Square}} {\bfseries white\+King\+Pos} = \{0, 0\}
+\item 
+\mbox{\Hypertarget{classBoard_a2a8987b31b84d3141696c67e57b39897}\label{classBoard_a2a8987b31b84d3141696c67e57b39897}} 
+\mbox{\hyperlink{classSquare}{Square}} {\bfseries black\+King\+Pos} = \{0, 0\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classBoard_a9ee491d4fea680cf69b033374a9fdfcb}\label{classBoard_a9ee491d4fea680cf69b033374a9fdfcb}} 
+\index{Board@{Board}!Board@{Board}}
+\index{Board@{Board}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{Board()}{Board()}}
+{\footnotesize\ttfamily Board\+::\+Board (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{classBoard}{Board}} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classBoard_abb545f33ed68649c62889fdc42894274}\label{classBoard_abb545f33ed68649c62889fdc42894274}} 
+\index{Board@{Board}!affiche@{affiche}}
+\index{affiche@{affiche}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{affiche()}{affiche()}}
+{\footnotesize\ttfamily void Board\+::affiche (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+display the board 
+
+\mbox{\Hypertarget{classBoard_af926195708cad11e356b60fb7fc7d245}\label{classBoard_af926195708cad11e356b60fb7fc7d245}} 
+\index{Board@{Board}!allocMemBoard@{allocMemBoard}}
+\index{allocMemBoard@{allocMemBoard}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{allocMemBoard()}{allocMemBoard()}}
+{\footnotesize\ttfamily void Board\+::alloc\+Mem\+Board (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+allocate memory for the board 
+
+\mbox{\Hypertarget{classBoard_a3e18dffdb6187ff077be202e00c73c50}\label{classBoard_a3e18dffdb6187ff077be202e00c73c50}} 
+\index{Board@{Board}!canCastle@{canCastle}}
+\index{canCastle@{canCastle}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{canCastle()}{canCastle()}}
+{\footnotesize\ttfamily int Board\+::can\+Castle (\begin{DoxyParamCaption}\item[{Color}]{color }\end{DoxyParamCaption})}
+
+
+
+check if the king can castle 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the king can castle, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a6a6adc3ab52fcb99bad35e02a948ab31}\label{classBoard_a6a6adc3ab52fcb99bad35e02a948ab31}} 
+\index{Board@{Board}!canonicalPosition@{canonicalPosition}}
+\index{canonicalPosition@{canonicalPosition}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{canonicalPosition()}{canonicalPosition()}}
+{\footnotesize\ttfamily string Board\+::canonical\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get the canonical position of the board 
+
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a1f72018bbfbb6617b1ff7b38fc1262ad}\label{classBoard_a1f72018bbfbb6617b1ff7b38fc1262ad}} 
+\index{Board@{Board}!destinationSquare@{destinationSquare}}
+\index{destinationSquare@{destinationSquare}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{destinationSquare()}{destinationSquare()}}
+{\footnotesize\ttfamily int Board\+::destination\+Square (\begin{DoxyParamCaption}\item[{int}]{col\+\_\+orig,  }\item[{int}]{lign\+\_\+orig,  }\item[{int}]{col\+\_\+dest,  }\item[{int}]{lign\+\_\+dest }\end{DoxyParamCaption})}
+
+
+
+check if the destination square is accessible 
+
+
+\begin{DoxyParams}{Parameters}
+{\em col\+\_\+orig} & \\
+\hline
+{\em lign\+\_\+orig} & \\
+\hline
+{\em col\+\_\+dest} & \\
+\hline
+{\em lign\+\_\+dest} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the destination square is accessible, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a85b46ebad772ac0b72231cc3ef07fda3}\label{classBoard_a85b46ebad772ac0b72231cc3ef07fda3}} 
+\index{Board@{Board}!getBoard@{getBoard}}
+\index{getBoard@{getBoard}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{getBoard()}{getBoard()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPiece}{Piece}} $\ast$$\ast$$\ast$ Board\+::get\+Board (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the \mbox{\hyperlink{classBoard}{Board}} object. 
+
+\begin{DoxyReturn}{Returns}
+Piece$\ast$$\ast$$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a179016e1ac8dd212a4eb36245c0179a3}\label{classBoard_a179016e1ac8dd212a4eb36245c0179a3}} 
+\index{Board@{Board}!getPiece@{getPiece}}
+\index{getPiece@{getPiece}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{getPiece()}{getPiece()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPiece}{Piece}} $\ast$ Board\+::get\+Piece (\begin{DoxyParamCaption}\item[{int}]{lign,  }\item[{int}]{col }\end{DoxyParamCaption})}
+
+
+
+Get the \mbox{\hyperlink{classPiece}{Piece}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lign} & \\
+\hline
+{\em col} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Piece$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a91541d9c14fdd422be86b9a0ac42ac02}\label{classBoard_a91541d9c14fdd422be86b9a0ac42ac02}} 
+\index{Board@{Board}!isAttackingKing@{isAttackingKing}}
+\index{isAttackingKing@{isAttackingKing}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{isAttackingKing()}{isAttackingKing()}}
+{\footnotesize\ttfamily int Board\+::is\+Attacking\+King (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPiece}{Piece}} $\ast$}]{piece }\end{DoxyParamCaption})}
+
+
+
+check if the piece is attacking the opposite king 
+
+
+\begin{DoxyParams}{Parameters}
+{\em piece} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the piece is attacking the opposite king, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_afe2dccde6d56cdb3e264ce68c6a0c275}\label{classBoard_afe2dccde6d56cdb3e264ce68c6a0c275}} 
+\index{Board@{Board}!isCheckmate@{isCheckmate}}
+\index{isCheckmate@{isCheckmate}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{isCheckmate()}{isCheckmate()}}
+{\footnotesize\ttfamily int Board\+::is\+Checkmate (\begin{DoxyParamCaption}\item[{Color}]{color }\end{DoxyParamCaption})}
+
+
+
+check if it\textquotesingle{}s checkmate 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if it\textquotesingle{}s checkmate, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a8b8ad0d770b8709e4aa46e78013df7fb}\label{classBoard_a8b8ad0d770b8709e4aa46e78013df7fb}} 
+\index{Board@{Board}!isEnPassant@{isEnPassant}}
+\index{isEnPassant@{isEnPassant}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{isEnPassant()}{isEnPassant()}}
+{\footnotesize\ttfamily int Board\+::is\+En\+Passant (\begin{DoxyParamCaption}\item[{int}]{col\+\_\+orig,  }\item[{int}]{lign\+\_\+orig,  }\item[{int}]{col\+\_\+dest,  }\item[{int}]{lign\+\_\+dest }\end{DoxyParamCaption})}
+
+
+
+check if en passant is possible 
+
+
+\begin{DoxyParams}{Parameters}
+{\em col\+\_\+orig} & \\
+\hline
+{\em lign\+\_\+orig} & \\
+\hline
+{\em col\+\_\+dest} & \\
+\hline
+{\em lign\+\_\+dest} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the en passant is possible, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a4f731a90ed9d4f088176782a12c78110}\label{classBoard_a4f731a90ed9d4f088176782a12c78110}} 
+\index{Board@{Board}!isKingInCheck@{isKingInCheck}}
+\index{isKingInCheck@{isKingInCheck}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{isKingInCheck()}{isKingInCheck()}}
+{\footnotesize\ttfamily int Board\+::is\+King\+In\+Check (\begin{DoxyParamCaption}\item[{Color}]{color }\end{DoxyParamCaption})}
+
+
+
+check if the king is in check 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the king is in check, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a168fcdecc632a7329f92e9cbe946a73e}\label{classBoard_a168fcdecc632a7329f92e9cbe946a73e}} 
+\index{Board@{Board}!isPathClear@{isPathClear}}
+\index{isPathClear@{isPathClear}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{isPathClear()}{isPathClear()}}
+{\footnotesize\ttfamily int Board\+::is\+Path\+Clear (\begin{DoxyParamCaption}\item[{int}]{col\+\_\+orig,  }\item[{int}]{lign\+\_\+orig,  }\item[{int}]{col\+\_\+dest,  }\item[{int}]{lign\+\_\+dest }\end{DoxyParamCaption})}
+
+
+
+check if the path is clear 
+
+
+\begin{DoxyParams}{Parameters}
+{\em col\+\_\+orig} & \\
+\hline
+{\em lign\+\_\+orig} & \\
+\hline
+{\em col\+\_\+dest} & \\
+\hline
+{\em lign\+\_\+dest} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the path is clear, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a67a9d8572cf333647d1fb37c7a3f4970}\label{classBoard_a67a9d8572cf333647d1fb37c7a3f4970}} 
+\index{Board@{Board}!isPathClearBishop@{isPathClearBishop}}
+\index{isPathClearBishop@{isPathClearBishop}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{isPathClearBishop()}{isPathClearBishop()}}
+{\footnotesize\ttfamily int Board\+::is\+Path\+Clear\+Bishop (\begin{DoxyParamCaption}\item[{int}]{col\+\_\+orig,  }\item[{int}]{lign\+\_\+orig,  }\item[{int}]{col\+\_\+dest,  }\item[{int}]{lign\+\_\+dest }\end{DoxyParamCaption})}
+
+
+
+check if the path is clear for the bishop 
+
+
+\begin{DoxyParams}{Parameters}
+{\em col\+\_\+orig} & \\
+\hline
+{\em lign\+\_\+orig} & \\
+\hline
+{\em col\+\_\+dest} & \\
+\hline
+{\em lign\+\_\+dest} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the path is clear, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_ac401d95da1d56bfc092b132a946bd6eb}\label{classBoard_ac401d95da1d56bfc092b132a946bd6eb}} 
+\index{Board@{Board}!isPathClearPawn@{isPathClearPawn}}
+\index{isPathClearPawn@{isPathClearPawn}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{isPathClearPawn()}{isPathClearPawn()}}
+{\footnotesize\ttfamily int Board\+::is\+Path\+Clear\+Pawn (\begin{DoxyParamCaption}\item[{int}]{col\+\_\+orig,  }\item[{int}]{lign\+\_\+orig,  }\item[{int}]{col\+\_\+dest,  }\item[{int}]{lign\+\_\+dest }\end{DoxyParamCaption})}
+
+
+
+check if the path is clear for the pawn 
+
+
+\begin{DoxyParams}{Parameters}
+{\em col\+\_\+orig} & \\
+\hline
+{\em lign\+\_\+orig} & \\
+\hline
+{\em col\+\_\+dest} & \\
+\hline
+{\em lign\+\_\+dest} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the path is clear, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_aa777f8fcaa82158fc74dd7b27e903704}\label{classBoard_aa777f8fcaa82158fc74dd7b27e903704}} 
+\index{Board@{Board}!isPathClearPawnBlack@{isPathClearPawnBlack}}
+\index{isPathClearPawnBlack@{isPathClearPawnBlack}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{isPathClearPawnBlack()}{isPathClearPawnBlack()}}
+{\footnotesize\ttfamily int Board\+::is\+Path\+Clear\+Pawn\+Black (\begin{DoxyParamCaption}\item[{int}]{col\+\_\+orig,  }\item[{int}]{lign\+\_\+orig,  }\item[{int}]{col\+\_\+dest,  }\item[{int}]{lign\+\_\+dest }\end{DoxyParamCaption})}
+
+
+
+check if the path is clear for a black pawn 
+
+
+\begin{DoxyParams}{Parameters}
+{\em col\+\_\+orig} & \\
+\hline
+{\em lign\+\_\+orig} & \\
+\hline
+{\em col\+\_\+dest} & \\
+\hline
+{\em lign\+\_\+dest} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the path is clear, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_ae2b6a05c460347b9283b1f60b540d4df}\label{classBoard_ae2b6a05c460347b9283b1f60b540d4df}} 
+\index{Board@{Board}!isPathClearPawnWhite@{isPathClearPawnWhite}}
+\index{isPathClearPawnWhite@{isPathClearPawnWhite}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{isPathClearPawnWhite()}{isPathClearPawnWhite()}}
+{\footnotesize\ttfamily int Board\+::is\+Path\+Clear\+Pawn\+White (\begin{DoxyParamCaption}\item[{int}]{col\+\_\+orig,  }\item[{int}]{lign\+\_\+orig,  }\item[{int}]{col\+\_\+dest,  }\item[{int}]{lign\+\_\+dest }\end{DoxyParamCaption})}
+
+
+
+check if the path is clear for a white pawn 
+
+
+\begin{DoxyParams}{Parameters}
+{\em col\+\_\+orig} & \\
+\hline
+{\em lign\+\_\+orig} & \\
+\hline
+{\em col\+\_\+dest} & \\
+\hline
+{\em lign\+\_\+dest} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the path is clear, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_aee5df536ff667e908c9c609bb65e26e2}\label{classBoard_aee5df536ff667e908c9c609bb65e26e2}} 
+\index{Board@{Board}!isPathClearQueen@{isPathClearQueen}}
+\index{isPathClearQueen@{isPathClearQueen}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{isPathClearQueen()}{isPathClearQueen()}}
+{\footnotesize\ttfamily int Board\+::is\+Path\+Clear\+Queen (\begin{DoxyParamCaption}\item[{int}]{col\+\_\+orig,  }\item[{int}]{lign\+\_\+orig,  }\item[{int}]{col\+\_\+dest,  }\item[{int}]{lign\+\_\+dest }\end{DoxyParamCaption})}
+
+
+
+check if the path is clear from the queen 
+
+
+\begin{DoxyParams}{Parameters}
+{\em col\+\_\+orig} & \\
+\hline
+{\em lign\+\_\+orig} & \\
+\hline
+{\em col\+\_\+dest} & \\
+\hline
+{\em lign\+\_\+dest} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the path is clear, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a477c8287ecbfc33398b566621e6cc903}\label{classBoard_a477c8287ecbfc33398b566621e6cc903}} 
+\index{Board@{Board}!isPathClearRook@{isPathClearRook}}
+\index{isPathClearRook@{isPathClearRook}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{isPathClearRook()}{isPathClearRook()}}
+{\footnotesize\ttfamily int Board\+::is\+Path\+Clear\+Rook (\begin{DoxyParamCaption}\item[{int}]{col\+\_\+orig,  }\item[{int}]{lign\+\_\+orig,  }\item[{int}]{col\+\_\+dest,  }\item[{int}]{lign\+\_\+dest }\end{DoxyParamCaption})}
+
+
+
+check if the path is clear for the rook 
+
+
+\begin{DoxyParams}{Parameters}
+{\em col\+\_\+orig} & \\
+\hline
+{\em lign\+\_\+orig} & \\
+\hline
+{\em col\+\_\+dest} & \\
+\hline
+{\em lign\+\_\+dest} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the path is clear, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a5c141511d31888cdf6499ac25f131400}\label{classBoard_a5c141511d31888cdf6499ac25f131400}} 
+\index{Board@{Board}!isPromotion@{isPromotion}}
+\index{isPromotion@{isPromotion}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{isPromotion()}{isPromotion()}}
+{\footnotesize\ttfamily int Board\+::is\+Promotion (\begin{DoxyParamCaption}\item[{int}]{lign\+\_\+orig,  }\item[{int}]{col\+\_\+orig,  }\item[{int}]{lign\+\_\+dest,  }\item[{int}]{col\+\_\+dest }\end{DoxyParamCaption})}
+
+
+
+check if the move is a promotion 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lign\+\_\+orig} & \\
+\hline
+{\em col\+\_\+orig} & \\
+\hline
+{\em lign\+\_\+dest} & \\
+\hline
+{\em col\+\_\+dest} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the move is a promotion, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a4d50fa5e89e53fdf03260f68ff6b5102}\label{classBoard_a4d50fa5e89e53fdf03260f68ff6b5102}} 
+\index{Board@{Board}!isStalemate@{isStalemate}}
+\index{isStalemate@{isStalemate}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{isStalemate()}{isStalemate()}}
+{\footnotesize\ttfamily int Board\+::is\+Stalemate (\begin{DoxyParamCaption}\item[{Color}]{color }\end{DoxyParamCaption})}
+
+
+
+check if it\textquotesingle{}s stalemate 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if it\textquotesingle{}s stalemate, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a7c7f598a7780f157e6c0edd6e5decd0c}\label{classBoard_a7c7f598a7780f157e6c0edd6e5decd0c}} 
+\index{Board@{Board}!KingInCheckAfterCastle@{KingInCheckAfterCastle}}
+\index{KingInCheckAfterCastle@{KingInCheckAfterCastle}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{KingInCheckAfterCastle()}{KingInCheckAfterCastle()}}
+{\footnotesize\ttfamily int Board\+::\+King\+In\+Check\+After\+Castle (\begin{DoxyParamCaption}\item[{Color}]{color,  }\item[{int}]{Castling\+Type }\end{DoxyParamCaption})}
+
+
+
+check if the king will be in check after castling 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & \\
+\hline
+{\em Castling\+Type} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the king will be in check, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a9cc5084fb5d4c05e374196ad1c6a2885}\label{classBoard_a9cc5084fb5d4c05e374196ad1c6a2885}} 
+\index{Board@{Board}!kingInCheckWhileCastling@{kingInCheckWhileCastling}}
+\index{kingInCheckWhileCastling@{kingInCheckWhileCastling}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{kingInCheckWhileCastling()}{kingInCheckWhileCastling()}}
+{\footnotesize\ttfamily int Board\+::king\+In\+Check\+While\+Castling (\begin{DoxyParamCaption}\item[{Color}]{color,  }\item[{int}]{castling\+Type }\end{DoxyParamCaption})}
+
+
+
+check if the king will be in check while castling 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & \\
+\hline
+{\em castling\+Type} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the king will be in check, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a62c20852983e64b3f97a9d0f0be88c24}\label{classBoard_a62c20852983e64b3f97a9d0f0be88c24}} 
+\index{Board@{Board}!kingWillBeInCheckAfterMove@{kingWillBeInCheckAfterMove}}
+\index{kingWillBeInCheckAfterMove@{kingWillBeInCheckAfterMove}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{kingWillBeInCheckAfterMove()}{kingWillBeInCheckAfterMove()}}
+{\footnotesize\ttfamily int Board\+::king\+Will\+Be\+In\+Check\+After\+Move (\begin{DoxyParamCaption}\item[{int}]{lign\+\_\+orig,  }\item[{int}]{col\+\_\+orig,  }\item[{int}]{lign\+\_\+dest,  }\item[{int}]{col\+\_\+dest }\end{DoxyParamCaption})}
+
+
+
+check if the king will be in check after the move 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lign\+\_\+orig} & \\
+\hline
+{\em col\+\_\+orig} & \\
+\hline
+{\em lign\+\_\+dest} & \\
+\hline
+{\em col\+\_\+dest} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the king will be in check, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a8dc3c6bcf0694d8a5139233d3dbeb9f6}\label{classBoard_a8dc3c6bcf0694d8a5139233d3dbeb9f6}} 
+\index{Board@{Board}!longCastling@{longCastling}}
+\index{longCastling@{longCastling}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{longCastling()}{longCastling()}}
+{\footnotesize\ttfamily int Board\+::long\+Castling (\begin{DoxyParamCaption}\item[{Color}]{color }\end{DoxyParamCaption})}
+
+
+
+long castle 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the long castle is possible, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_ab81d52519382fa42432b0114a9aeff3f}\label{classBoard_ab81d52519382fa42432b0114a9aeff3f}} 
+\index{Board@{Board}!move@{move}}
+\index{move@{move}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily int Board\+::move (\begin{DoxyParamCaption}\item[{int}]{col\+\_\+orig,  }\item[{int}]{lign\+\_\+orig,  }\item[{int}]{col\+\_\+dest,  }\item[{int}]{lign\+\_\+dest }\end{DoxyParamCaption})}
+
+
+
+move the piece on the board 
+
+
+\begin{DoxyParams}{Parameters}
+{\em col\+\_\+orig} & \\
+\hline
+{\em lign\+\_\+orig} & \\
+\hline
+{\em col\+\_\+dest} & \\
+\hline
+{\em lign\+\_\+dest} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the move is legal, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a79c0bfdd976c300284e141cd0173f2bd}\label{classBoard_a79c0bfdd976c300284e141cd0173f2bd}} 
+\index{Board@{Board}!pawnIsTaking@{pawnIsTaking}}
+\index{pawnIsTaking@{pawnIsTaking}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{pawnIsTaking()}{pawnIsTaking()}}
+{\footnotesize\ttfamily int Board\+::pawn\+Is\+Taking (\begin{DoxyParamCaption}\item[{int}]{col\+\_\+orig,  }\item[{int}]{lign\+\_\+orig,  }\item[{int}]{col\+\_\+dest,  }\item[{int}]{lign\+\_\+dest }\end{DoxyParamCaption})}
+
+
+
+check if the pawn can take 
+
+
+\begin{DoxyParams}{Parameters}
+{\em col\+\_\+orig} & \\
+\hline
+{\em lign\+\_\+orig} & \\
+\hline
+{\em col\+\_\+dest} & \\
+\hline
+{\em lign\+\_\+dest} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the taking is possible, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a33f4f76d3a052c7f4e43f5d8e9a32458}\label{classBoard_a33f4f76d3a052c7f4e43f5d8e9a32458}} 
+\index{Board@{Board}!pgn\_piece\_name@{pgn\_piece\_name}}
+\index{pgn\_piece\_name@{pgn\_piece\_name}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{pgn\_piece\_name()}{pgn\_piece\_name()}}
+{\footnotesize\ttfamily string Board\+::pgn\+\_\+piece\+\_\+name (\begin{DoxyParamCaption}\item[{string const}]{name,  }\item[{bool}]{view\+\_\+pawn,  }\item[{bool}]{view\+\_\+color }\end{DoxyParamCaption}) const}
+
+
+
+get the pgn of the piece 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \\
+\hline
+{\em view\+\_\+pawn} & \\
+\hline
+{\em view\+\_\+color} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a8b81d732fc80c0e82535bcd7283e16f6}\label{classBoard_a8b81d732fc80c0e82535bcd7283e16f6}} 
+\index{Board@{Board}!promotion@{promotion}}
+\index{promotion@{promotion}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{promotion()}{promotion()}}
+{\footnotesize\ttfamily int Board\+::promotion (\begin{DoxyParamCaption}\item[{int}]{lign\+\_\+orig,  }\item[{int}]{col\+\_\+orig,  }\item[{int}]{lign\+\_\+dest,  }\item[{int}]{col\+\_\+dest }\end{DoxyParamCaption})}
+
+
+
+promote the pawn 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lign\+\_\+orig} & \\
+\hline
+{\em col\+\_\+orig} & \\
+\hline
+{\em lign\+\_\+dest} & \\
+\hline
+{\em col\+\_\+dest} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the promotion is possible, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a61b9992d1090d9ab82c1b64aba97e07a}\label{classBoard_a61b9992d1090d9ab82c1b64aba97e07a}} 
+\index{Board@{Board}!putPiece@{putPiece}}
+\index{putPiece@{putPiece}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{putPiece()}{putPiece()}}
+{\footnotesize\ttfamily void Board\+::put\+Piece (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPiece}{Piece}} $\ast$}]{piece,  }\item[{\mbox{\hyperlink{classSquare}{Square}}}]{starting\+Pos }\end{DoxyParamCaption})}
+
+
+
+put the piece on the board 
+
+
+\begin{DoxyParams}{Parameters}
+{\em piece} & \\
+\hline
+{\em starting\+Pos} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBoard_adf8704d6110bdd2ada210c3424e6be5f}\label{classBoard_adf8704d6110bdd2ada210c3424e6be5f}} 
+\index{Board@{Board}!shortCastling@{shortCastling}}
+\index{shortCastling@{shortCastling}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{shortCastling()}{shortCastling()}}
+{\footnotesize\ttfamily int Board\+::short\+Castling (\begin{DoxyParamCaption}\item[{Color}]{color }\end{DoxyParamCaption})}
+
+
+
+short castle 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the short castle is possible, 0 otherwise 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/board.\+hpp\item 
+src/board.\+cpp\end{DoxyCompactItemize}

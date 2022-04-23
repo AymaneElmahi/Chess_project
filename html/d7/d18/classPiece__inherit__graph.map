@@ -1,0 +1,9 @@
+<map id="Piece" name="Piece">
+<area shape="rect" id="node1" title=" " alt="" coords="215,5,273,32"/>
+<area shape="rect" id="node2" href="$de/dfb/classBishop.html" title=" " alt="" coords="5,80,72,107"/>
+<area shape="rect" id="node3" href="$d1/db5/classKing.html" title=" " alt="" coords="96,80,147,107"/>
+<area shape="rect" id="node4" href="$d5/d23/classKnight.html" title=" " alt="" coords="171,80,235,107"/>
+<area shape="rect" id="node5" href="$de/dff/classPawn.html" title=" " alt="" coords="259,80,315,107"/>
+<area shape="rect" id="node6" href="$d5/d3f/classQueen.html" title=" " alt="" coords="339,80,403,107"/>
+<area shape="rect" id="node7" href="$db/d7e/classRook.html" title=" " alt="" coords="427,80,482,107"/>
+</map>

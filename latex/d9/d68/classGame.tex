@@ -1,0 +1,163 @@
+\hypertarget{classGame}{}\doxysection{Game Class Reference}
+\label{classGame}\index{Game@{Game}}
+
+
+{\ttfamily \#include $<$game.\+hpp$>$}
+
+
+
+Collaboration diagram for Game\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{de/da7/classGame__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBoard}{Board}} \mbox{\hyperlink{classGame_a6d089ed1bc9e3776d118c00c833db15e}{get\+Board}} ()
+\begin{DoxyCompactList}\small\item\em Get the \mbox{\hyperlink{classBoard}{Board}} object. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGame_a1c66bbc4eb147d1b72b4d6d3d40c029d}{move}} (string starting\+Pos, string ending\+Pos)
+\begin{DoxyCompactList}\small\item\em move the piece on the board \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGame_a0d421bbb8ab615c9d7a3b13ffcda161f}{affiche}} ()
+\begin{DoxyCompactList}\small\item\em display the board \end{DoxyCompactList}\item 
+\mbox{\hyperlink{color_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}} \mbox{\hyperlink{classGame_aa4f5f5f54f7021a227589e6c50115488}{get\+Turn}} ()
+\begin{DoxyCompactList}\small\item\em get the turn \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGame_ac160628e4a2c4b735517ace166017ef4}{set\+Turn}} (\mbox{\hyperlink{color_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}} \mbox{\hyperlink{classGame_aa1bd508eb27d4334eca2bd5b581bc787}{turn}})
+\begin{DoxyCompactList}\small\item\em set the turn \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGame_afbe25f822a7f372ba40f19e492ef57fd}{display\+Ending\+Position}} ()
+\begin{DoxyCompactList}\small\item\em display the board at the end \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGame_aab41d12ee1009654e11532b006127a97}{castle}} (string movement)
+\begin{DoxyCompactList}\small\item\em castle \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBoard}{Board}} \mbox{\hyperlink{classGame_af5bc546b0c766ecf2f7e008f750832ed}{board}}
+\item 
+\mbox{\hyperlink{color_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}} \mbox{\hyperlink{classGame_aa1bd508eb27d4334eca2bd5b581bc787}{turn}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGame_a0d421bbb8ab615c9d7a3b13ffcda161f}\label{classGame_a0d421bbb8ab615c9d7a3b13ffcda161f}} 
+\index{Game@{Game}!affiche@{affiche}}
+\index{affiche@{affiche}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{affiche()}{affiche()}}
+{\footnotesize\ttfamily void Game\+::affiche (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+display the board 
+
+\mbox{\Hypertarget{classGame_aab41d12ee1009654e11532b006127a97}\label{classGame_aab41d12ee1009654e11532b006127a97}} 
+\index{Game@{Game}!castle@{castle}}
+\index{castle@{castle}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{castle()}{castle()}}
+{\footnotesize\ttfamily int Game\+::castle (\begin{DoxyParamCaption}\item[{string}]{movement }\end{DoxyParamCaption})}
+
+
+
+castle 
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGame_afbe25f822a7f372ba40f19e492ef57fd}\label{classGame_afbe25f822a7f372ba40f19e492ef57fd}} 
+\index{Game@{Game}!displayEndingPosition@{displayEndingPosition}}
+\index{displayEndingPosition@{displayEndingPosition}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{displayEndingPosition()}{displayEndingPosition()}}
+{\footnotesize\ttfamily int Game\+::display\+Ending\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+display the board at the end 
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGame_a6d089ed1bc9e3776d118c00c833db15e}\label{classGame_a6d089ed1bc9e3776d118c00c833db15e}} 
+\index{Game@{Game}!getBoard@{getBoard}}
+\index{getBoard@{getBoard}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{getBoard()}{getBoard()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classBoard}{Board}} Game\+::get\+Board (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the \mbox{\hyperlink{classBoard}{Board}} object. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classBoard}{Board}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGame_aa4f5f5f54f7021a227589e6c50115488}\label{classGame_aa4f5f5f54f7021a227589e6c50115488}} 
+\index{Game@{Game}!getTurn@{getTurn}}
+\index{getTurn@{getTurn}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{getTurn()}{getTurn()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{color_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}} Game\+::get\+Turn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get the turn 
+
+
+\begin{DoxyParams}{Parameters}
+{\em turn} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGame_a1c66bbc4eb147d1b72b4d6d3d40c029d}\label{classGame_a1c66bbc4eb147d1b72b4d6d3d40c029d}} 
+\index{Game@{Game}!move@{move}}
+\index{move@{move}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily int Game\+::move (\begin{DoxyParamCaption}\item[{string}]{starting\+Pos,  }\item[{string}]{ending\+Pos }\end{DoxyParamCaption})}
+
+
+
+move the piece on the board 
+
+
+\begin{DoxyParams}{Parameters}
+{\em starting\+Pos} & \\
+\hline
+{\em ending\+Pos} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGame_ac160628e4a2c4b735517ace166017ef4}\label{classGame_ac160628e4a2c4b735517ace166017ef4}} 
+\index{Game@{Game}!setTurn@{setTurn}}
+\index{setTurn@{setTurn}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{setTurn()}{setTurn()}}
+{\footnotesize\ttfamily void Game\+::set\+Turn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{color_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}}}]{turn }\end{DoxyParamCaption})}
+
+
+
+set the turn 
+
+
+\begin{DoxyParams}{Parameters}
+{\em turn} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classGame_af5bc546b0c766ecf2f7e008f750832ed}\label{classGame_af5bc546b0c766ecf2f7e008f750832ed}} 
+\index{Game@{Game}!board@{board}}
+\index{board@{board}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{board}{board}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classBoard}{Board}} Game\+::board\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classGame_aa1bd508eb27d4334eca2bd5b581bc787}\label{classGame_aa1bd508eb27d4334eca2bd5b581bc787}} 
+\index{Game@{Game}!turn@{turn}}
+\index{turn@{turn}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{turn}{turn}}
+{\footnotesize\ttfamily \mbox{\hyperlink{color_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}} Game\+::turn\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{game_8hpp}{game.\+hpp}}\item 
+src/\mbox{\hyperlink{game_8cpp}{game.\+cpp}}\end{DoxyCompactItemize}
