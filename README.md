@@ -1,4 +1,4 @@
-/> Chess Game in C++
+###Chess Game in C++
 
 <summary>School project</summary>
 
