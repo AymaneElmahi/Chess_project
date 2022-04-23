@@ -77,6 +77,7 @@ POSSIBILITY OF SUCH DAMAGE.
 Bugs (final correction version)
 
 - ~~ Some valgrind errors ~~
+- The program takes a few seconds to compile.
 
 TODO
 
