@@ -2,10 +2,48 @@
 #include "piece.hpp"
 #include "macros.hpp"
 
-/**
- * @brief set board cases to nullptr
- *
- */
+Board::Board()
+{
+
+    allocMemBoard(); // allocate memory for the board
+    // Constructeur (Couleur,nom_affiché, case)
+    whitePieces[0] = new Rook(White, " \u2656 ", Square(0, 0));
+    whitePieces[1] = new Knight(White, " \u2658 ", Square(0, 1));
+    whitePieces[2] = new Bishop(White, " \u2657 ", Square(0, 2));
+    whitePieces[3] = new Queen(White, " \u2655 ", Square(0, 3));
+    whitePieces[4] = new King(White, " \u2654 ", Square(0, 4));
+    whitePieces[5] = new Bishop(White, " \u2657 ", Square(0, 5));
+    whitePieces[6] = new Knight(White, " \u2658 ", Square(0, 6));
+    whitePieces[7] = new Rook(White, " \u2656 ", Square(0, 7));
+    blackPieces[0] = new Rook(Black, " \u265C ", Square(7, 0));
+    blackPieces[1] = new Knight(Black, " \u265E ", Square(7, 1));
+    blackPieces[2] = new Bishop(Black, " \u265D ", Square(7, 2));
+    blackPieces[3] = new Queen(Black, " \u265B ", Square(7, 3));
+    blackPieces[4] = new King(Black, " \u265A ", Square(7, 4));
+    blackPieces[5] = new Bishop(Black, " \u265D ", Square(7, 5));
+    blackPieces[6] = new Knight(Black, " \u265E ", Square(7, 6));
+    blackPieces[7] = new Rook(Black, " \u265C ", Square(7, 7));
+
+    // save the kings positions
+    whiteKingPos = whitePieces[4]->get_position();
+    blackKingPos = blackPieces[4]->get_position();
+
+    // allocation des Pawns
+    for (unsigned char i(0); i < NBCOL; i++)
+    {
+        whitePawns[i] = new Pawn(White, " \u2659 ", Square(1, i));
+        blackPawns[i] = new Pawn(Black, " \u265F ", Square(6, i));
+    }
+
+    for (unsigned char i(0); i < NBCOL; i++)
+    {
+        putPiece(whitePieces[i], whitePieces[i]->get_position());
+        putPiece(blackPieces[i], blackPieces[i]->get_position());
+        putPiece(whitePawns[i], whitePawns[i]->get_position());
+        putPiece(blackPawns[i], blackPawns[i]->get_position());
+    }
+}
+
 void Board::allocMemBoard()
 {
     for (int i = 0; i < NBCOL; i++)
@@ -17,26 +55,11 @@ void Board::allocMemBoard()
     }
 }
 
-/**
- * @brief put a piece on the board (used to initialize the board)
- *
- * @param piece piece to put on the board
- * @param position position of the piece
- */
 void Board::putPiece(Piece *piece, Square position)
 {
     board[position.get_lign()][position.get_column()] = piece;
 }
 
-/**
- * @brief move a piece on the board
- *
- * @param lign_orig the lign of the piece to move
- * @param col_orig the column of the piece to move
- * @param lign_dest the lign of the destination
- * @param col_dest the column of the destination
- * @return int 1 if the move is possible, 0 otherwise
- */
 int Board::move(int col_orig, int lign_orig, int col_dest, int lign_dest)
 {
     // check if the move is within the Board
@@ -213,48 +236,6 @@ int Board::move(int col_orig, int lign_orig, int col_dest, int lign_dest)
     return 1;
 }
 
-Board::Board()
-{
-
-    allocMemBoard(); // allocate memory for the board
-    // Constructeur (Couleur,nom_affiché, case)
-    whitePieces[0] = new Rook(White, " \u2656 ", Square(0, 0));
-    whitePieces[1] = new Knight(White, " \u2658 ", Square(0, 1));
-    whitePieces[2] = new Bishop(White, " \u2657 ", Square(0, 2));
-    whitePieces[3] = new Queen(White, " \u2655 ", Square(0, 3));
-    whitePieces[4] = new King(White, " \u2654 ", Square(0, 4));
-    whitePieces[5] = new Bishop(White, " \u2657 ", Square(0, 5));
-    whitePieces[6] = new Knight(White, " \u2658 ", Square(0, 6));
-    whitePieces[7] = new Rook(White, " \u2656 ", Square(0, 7));
-    blackPieces[0] = new Rook(Black, " \u265C ", Square(7, 0));
-    blackPieces[1] = new Knight(Black, " \u265E ", Square(7, 1));
-    blackPieces[2] = new Bishop(Black, " \u265D ", Square(7, 2));
-    blackPieces[3] = new Queen(Black, " \u265B ", Square(7, 3));
-    blackPieces[4] = new King(Black, " \u265A ", Square(7, 4));
-    blackPieces[5] = new Bishop(Black, " \u265D ", Square(7, 5));
-    blackPieces[6] = new Knight(Black, " \u265E ", Square(7, 6));
-    blackPieces[7] = new Rook(Black, " \u265C ", Square(7, 7));
-
-    // save the kings positions
-    whiteKingPos = whitePieces[4]->get_position();
-    blackKingPos = blackPieces[4]->get_position();
-
-    // allocation des Pawns
-    for (unsigned char i(0); i < NBCOL; i++)
-    {
-        whitePawns[i] = new Pawn(White, " \u2659 ", Square(1, i));
-        blackPawns[i] = new Pawn(Black, " \u265F ", Square(6, i));
-    }
-
-    for (unsigned char i(0); i < NBCOL; i++)
-    {
-        putPiece(whitePieces[i], whitePieces[i]->get_position());
-        putPiece(blackPieces[i], blackPieces[i]->get_position());
-        putPiece(whitePawns[i], whitePawns[i]->get_position());
-        putPiece(blackPawns[i], blackPawns[i]->get_position());
-    }
-}
-
 void Board::affiche()
 {
     string space5 = string(5, ' ');
@@ -285,16 +266,6 @@ Piece *Board::getPiece(int lign, int col)
 {
     return board[lign][col];
 }
-
-/**
- * @brief check is the path is clear
- *
- * @param lign_orig
- * @param col_orig
- * @param lign_dest
- * @param col_dest
- * @return int return 1 if the path is clear, 0 if not
- */
 
 int Board::isPathClearBishop(int col_orig, int lign_orig, int col_dest, int lign_dest)
 {
@@ -522,17 +493,12 @@ int Board::isPathClear(int col_orig, int lign_orig, int col_dest, int lign_dest)
     return 1;
 }
 
-/**
- * @brief check if there is a piece of the same color in the destination square
- *
- */
 int Board::destinationSquare(int col_orig, int lign_orig, int col_dest, int lign_dest)
 {
     if (board[lign_dest][col_dest] != nullptr)
     {
         if (board[lign_dest][col_dest]->get_color() == board[lign_orig][col_orig]->get_color())
         {
-            cout << "There is a piece of the same color in the destination square" << endl;
             return 0;
         }
     }
@@ -635,10 +601,6 @@ int Board::isEnPassant(int col_orig, int lign_orig, int col_dest, int lign_dest)
     return 0;
 }
 
-/**
- * @brief check if the piece is attacking the opponent king
- * @return int
- */
 int Board::isAttackingKing(Piece *piece)
 {
     // get the opponent king name
@@ -1095,16 +1057,6 @@ int Board::isKingInCheck(Color color)
     return 0;
 }
 
-/**
- * @brief create temporary board to check if the king will be in check after the move
- *  if the king is in check after the move, the move is not possible
- * @param piece
- * @param lign_orig
- * @param col_orig
- * @param lign_dest
- * @param col_dest
- * @return int 1 if the king is in check after the move, 0 otherwise
- */
 int Board::kingWillBeInCheckAfterMove(int lign_orig, int col_orig, int lign_dest, int col_dest)
 {
 
@@ -1127,35 +1079,6 @@ int Board::kingWillBeInCheckAfterMove(int lign_orig, int col_orig, int lign_dest
 Piece ***Board::getBoard()
 {
     return (Piece ***)board;
-}
-
-int simulateMove(Piece ***board, int lign_orig, int col_orig, int lign_dest, int col_dest)
-{
-    // create a temporary board
-    Board *temp_board = new Board();
-    // put the pieces on the temporary board
-    for (int i = 0; i < NBLIGN; i++)
-    {
-        for (int j = 0; j < NBCOL; j++)
-        {
-            if (board[i][j] != nullptr)
-            {
-                temp_board->getBoard()[i][j] = board[i][j]->clone();
-            }
-            else
-                temp_board->getBoard()[i][j] = nullptr;
-        }
-    }
-    // move the piece on the temporary board
-    temp_board->move(lign_orig, col_orig, lign_dest, col_dest);
-    // check if the king is in check after the move
-    if (temp_board->isKingInCheck(board[lign_dest][col_dest]->get_color()))
-    {
-        delete temp_board;
-        return 1;
-    }
-    delete temp_board;
-    return 0;
 }
 
 int Board::isPromotion(int lign_orig, int col_orig, int lign_dest, int col_dest)
@@ -1188,15 +1111,6 @@ int Board::isPromotion(int lign_orig, int col_orig, int lign_dest, int col_dest)
     return 0;
 }
 
-/**
- * @brief check if the move is possible, ask the user for the promotion piece, and apply the move
- *
- * @param lign_orig
- * @param col_orig
- * @param lign_dest
- * @param col_dest
- * @return int
- */
 int Board::promotion(int lign_orig, int col_orig, int lign_dest, int col_dest)
 {
     string piece_name;
@@ -1286,26 +1200,6 @@ int Board::promotion(int lign_orig, int col_orig, int lign_dest, int col_dest)
     return 1;
 }
 
-// int Board::isCheckmate(Color color)
-// {
-//     // check if the king is in check
-//     if (!isKingInCheck(color))
-//     {
-//         return 0;
-//     }
-
-//     // check if the king can move out of the check
-// }
-
-/**
- * @brief  check if the king can castle
- *
- * @param color  the color of the king
- * @return int 1 if the king can only castle short,
- *             2 if the king can only castle long,
- *             3 if the king can castle both ways,
- *             0 if the king can't castle
- */
 int Board::canCastle(Color color)
 {
 
@@ -1325,7 +1219,8 @@ int Board::canCastle(Color color)
                 board[0][5] == nullptr && board[0][6] == nullptr &&
                 board[0][4]->get_hasMoved() == 0 && board[0][7]->get_hasMoved() == 0)
             {
-                short_castle = 1;
+                if (!kingInCheckWhileCastling(color, 1))
+                    short_castle = 1;
             }
         }
         // long castling
@@ -1336,7 +1231,8 @@ int Board::canCastle(Color color)
                 board[0][1] == nullptr && board[0][2] == nullptr && board[0][3] == nullptr &&
                 board[0][4]->get_hasMoved() == 0 && board[0][0]->get_hasMoved() == 0)
             {
-                long_castle = 2;
+                if (!kingInCheckWhileCastling(color, 2))
+                    long_castle = 2;
             }
         }
         return short_castle + long_castle;
@@ -1355,7 +1251,8 @@ int Board::canCastle(Color color)
                 board[7][5] == nullptr && board[7][6] == nullptr &&
                 board[7][4]->get_hasMoved() == 0 && board[7][7]->get_hasMoved() == 0)
             {
-                short_castle = 1;
+                if (!kingInCheckWhileCastling(color, 1))
+                    short_castle = 1;
             }
         }
         // long castling
@@ -1366,7 +1263,8 @@ int Board::canCastle(Color color)
                 board[7][1] == nullptr && board[7][2] == nullptr && board[7][3] == nullptr &&
                 board[7][4]->get_hasMoved() == 0 && board[7][0]->get_hasMoved() == 0)
             {
-                long_castle = 2;
+                if (!kingInCheckWhileCastling(color, 2))
+                    long_castle = 2;
             }
         }
     }
@@ -1384,7 +1282,7 @@ int Board::shortCastling(Color color)
     // check if the king can castle
     if (canCastle(color) != 1 && canCastle(color) != 3)
     {
-        cout << "You can't castle" << endl;
+        cout << "You can't castle short " << endl;
         return 0;
     }
     if (color == White)
@@ -1625,17 +1523,35 @@ int Board::isCheckmate(Color turn)
                     {
                         for (int l = 0; l < 8; l++)
                         {
-                            if (board[k][l] != nullptr && board[k][l]->get_color() != turn)
+                            if (board[k][l] != nullptr)
                             {
-                                if (board[i][j]->canMove(l, k) != 0 && isPathClear(j, i, l, k) == 1)
+                                if (board[k][l]->get_color() != turn)
                                 {
-                                    if (!kingWillBeInCheckAfterMove(i, j, k, l))
+                                    if (board[i][j]->canMove(l, k) == 1 && isPathClear(j, i, k, l))
                                     {
-                                        cout << board[i][j]->get_name() << i << j << " can stop the check" << endl;
-                                        cout << k << l << endl;
-                                        return 0;
+                                        {
+                                            if (!kingWillBeInCheckAfterMove(i, j, k, l))
+                                            {
+                                                return 0;
+                                            }
+                                        }
+                                    }
+                                    // check if a pawn can stop the check diagonally
+                                    if (board[i][j]->canMove(l, k) == 2)
+                                    {
+                                        if (board[k][l] != nullptr && board[k][l]->get_color() != turn)
+                                        {
+                                            if (!kingWillBeInCheckAfterMove(i, j, k, l))
+                                            {
+                                                return 0;
+                                            }
+                                        }
                                     }
                                 }
+                            }
+                            else if (board[i][j]->canMove(l, k) == 1 && isPathClear(j, i, l, k) && !kingWillBeInCheckAfterMove(i, j, k, l))
+                            {
+                                return 0;
                             }
                         }
                     }
@@ -1644,4 +1560,207 @@ int Board::isCheckmate(Color turn)
         }
     }
     return 1;
+}
+
+int Board::isStalemate(Color turn)
+{
+
+    // check if the king is not in check
+    if (isKingInCheck(turn))
+    {
+        return 0;
+    }
+
+    // check if the king can move to the squares next to it
+    int kingLign = 0, kingCol = 0;
+    if (turn == White)
+    {
+        kingLign = whiteKingPos.get_lign();
+        kingCol = whiteKingPos.get_column();
+    }
+    else if (turn == Black)
+    {
+        kingLign = blackKingPos.get_lign();
+        kingCol = blackKingPos.get_column();
+    }
+    for (int i = -1; i < 2; i++)
+    {
+        for (int j = -1; j < 2; j++)
+        {
+            if (kingLign + i < 0 || kingLign + i > 7 || kingCol + j < 0 || kingCol + j > 7)
+            {
+                continue;
+            }
+            if (board[kingLign + i][kingCol + j] != nullptr)
+            {
+                if (board[kingLign + i][kingCol + j]->get_color() != turn)
+                {
+                    if (!kingWillBeInCheckAfterMove(kingLign, kingCol, kingLign + i, kingCol + j))
+                    {
+                        return 0;
+                    }
+                }
+            }
+            else if (!kingWillBeInCheckAfterMove(kingLign, kingCol, kingLign + i, kingCol + j))
+            {
+                return 0;
+            }
+        }
+    }
+
+    // check if other pieces can move
+    for (int i = 0; i < 8; i++)
+    {
+        for (int j = 0; j < 8; j++)
+        {
+            if (board[i][j] != nullptr)
+            {
+                if (board[i][j]->get_color() == turn)
+                {
+                    for (int k = 0; k < 8; k++)
+                    {
+                        for (int l = 0; l < 8; l++)
+                        {
+                            if (board[k][l] != nullptr)
+                            {
+                                if (board[k][l]->get_color() != turn)
+                                {
+                                    if (board[i][j]->canMove(l, k) == 1 && isPathClear(j, i, l, k))
+                                    {
+                                        {
+                                            if (!kingWillBeInCheckAfterMove(i, j, k, l))
+                                            {
+                                                return 0;
+                                            }
+                                        }
+                                    }
+                                    // check if a pawn can move diagonally
+                                    if (board[i][j]->canMove(l, k) == 2)
+                                    {
+                                        if (board[k][l] != nullptr && board[k][l]->get_color() != turn)
+                                        {
+                                            if (!kingWillBeInCheckAfterMove(i, j, k, l))
+                                            {
+                                                return 0;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else if (board[i][j]->canMove(l, k) == 1 && isPathClear(j, i, l, k) && !kingWillBeInCheckAfterMove(i, j, k, l))
+                            {
+                                return 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return 1;
+}
+
+string Board::pgn_piece_name(string const name, bool view_pawn, bool view_color) const
+{
+    string psymb;
+    if (name == " \u2656 ")
+        psymb = "R"; // Rook W
+    else if (name == " \u2658 ")
+        psymb = "N"; // Knight W
+    else if (name == " \u2657 ")
+        psymb = "B"; // Bishop W
+    else if (name == " \u2655 ")
+        psymb = "Q"; // Queen W
+    else if (name == " \u2654 ")
+        psymb = "K"; // King W
+    else if (name.rfind(" \u2659 ", 0) == 0 && view_pawn)
+        psymb = "P"; // Pawn W
+    if (psymb.size() > 0)
+    { // one of the white piece has been found
+        if (view_color)
+            return "w" + psymb;
+        else
+            return psymb;
+    }
+    if (name == " \u265C ")
+        psymb = "R"; // Rook B
+    else if (name == " \u265E ")
+        psymb = "N"; // Knight B
+    else if (name == " \u265D ")
+        psymb = "B"; // Bishop B
+    else if (name == " \u265B ")
+        psymb = "Q"; // Queen B
+    else if (name == " \u265A ")
+        psymb = "K"; // King B
+    else if (name.rfind(" \u265F ", 0) == 0 && view_pawn)
+        psymb = "P"; // Pawn B
+    if (psymb.size() > 0)
+    { // one of the black piece has been found
+        if (view_color)
+            return "b" + psymb;
+        else
+            return psymb;
+    }
+    else
+        return "";
+}
+
+string Board::canonicalPosition()
+{
+    string pgn;
+    for (int i = 0; i < 8; i++)
+    {
+        for (int j = 0; j < 8; j++)
+        {
+            if (board[i][j] != nullptr)
+            {
+                pgn += pgn_piece_name(board[i][j]->get_name(), true, true);
+            }
+            else
+            {
+                pgn += ",";
+            }
+        }
+        pgn += ",";
+    }
+    return pgn;
+}
+
+int Board::kingInCheckWhileCastling(Color Color, int castlingType)
+{
+    int kingLign = 0, kingCol = 0;
+    if (Color == White)
+    {
+        kingLign = whiteKingPos.get_lign();
+        kingCol = whiteKingPos.get_column();
+    }
+    else if (Color == Black)
+    {
+        kingLign = blackKingPos.get_lign();
+        kingCol = blackKingPos.get_column();
+    }
+    // short castling
+    if (castlingType == 1)
+    {
+        for (int i = 1; i < 3; i++)
+        {
+
+            if (kingWillBeInCheckAfterMove(kingLign, kingCol, kingLign, kingCol + i))
+            {
+                return 1;
+            }
+        }
+    }
+    // long castling
+    else if (castlingType == 2)
+    {
+        for (int i = 1; i < 3; i++)
+        {
+            if (kingWillBeInCheckAfterMove(kingLign, kingCol, kingLign, kingCol - i))
+            {
+                return 1;
+            }
+        }
+    }
+    return 0;
 }

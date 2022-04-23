@@ -3,7 +3,6 @@
 int Pawn::isLegalMove(int StartCol, int StartLign, int EndCol, int EndLign)
 {
     // check if the pawn is going up
-
     if (color == White)
     {
         if (EndLign <= StartLign || EndCol > StartCol + 1 || EndCol < StartCol - 1)

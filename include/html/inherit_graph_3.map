@@ -1,9 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classPiece.html" title=" " alt="" coords="5,132,63,159"/>
-<area shape="rect" id="node2" href="$classBishop.html" title=" " alt="" coords="111,5,177,32"/>
-<area shape="rect" id="node3" href="$classKing.html" title=" " alt="" coords="119,56,169,83"/>
-<area shape="rect" id="node4" href="$classKnight.html" title=" " alt="" coords="112,107,176,133"/>
-<area shape="rect" id="node5" href="$classPawn.html" title=" " alt="" coords="116,157,172,184"/>
-<area shape="rect" id="node6" href="$classQueen.html" title=" " alt="" coords="112,208,176,235"/>
-<area shape="rect" id="node7" href="$classRook.html" title=" " alt="" coords="117,259,171,285"/>
-</map>

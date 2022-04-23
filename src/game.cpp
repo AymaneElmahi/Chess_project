@@ -84,3 +84,9 @@ int Game::castle(string movement)
         return 0;
     }
 }
+
+int Game::displayEndingPosition()
+{
+    cout << board.canonicalPosition() << endl;
+    return 1;
+}

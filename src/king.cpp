@@ -1,4 +1,5 @@
 #include "king.hpp"
+
 int King::isLegalMove(int StartCol, int StartLign, int EndCol, int EndLign)
 {
     // check if the move is horizontal or vertical

@@ -5,6 +5,10 @@
 
 using namespace std;
 
+/**
+ * @brief color of the piece
+ *
+ */
 enum Color
 {
     White = 0,

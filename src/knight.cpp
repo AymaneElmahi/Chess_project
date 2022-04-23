@@ -1,14 +1,5 @@
 #include "knight.hpp"
 
-/**
- * @brief check if the move is legal for a knight
- *
- * @param StartCol
- * @param StartLign
- * @param EndCol
- * @param EndLign
- * @return int
- */
 int Knight::isLegalMove(int StartCol, int StartLign, int EndCol, int EndLign)
 {
     // test the 8 squares the knight can move to
